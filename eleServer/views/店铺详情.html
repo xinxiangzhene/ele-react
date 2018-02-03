@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script src = 'jquery-1.11.0.js'></script>
+	<script>
+		$.ajax({
+			url:'http://localhost:3000/product',
+			dataType:'json',
+			success:function(data){
+				console.log(data)
+			}
+		})
+		
+		
+//		$.ajax({
+//			url:'https://h5.ele.me/restapi/bgs/poi/reverse_geo_coding?latitude=32.147141&longitude=114.092789',
+//			dataType:'json',
+//			success:function(data){
+//				console.log(data)
+//			}
+//		})
+	</script>
+</html>

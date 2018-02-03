@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="search" id = 'ipt'/>
+		<button id = 'btn'>搜素</button>
+	</body>
+	<script src = 'jquery-1.11.0.js'></script>
+	<script>
+		$('#btn').click(function(){
+			
+		$.ajax({
+			url:'http://localhost:3000/list',
+			dataType:'json',
+			data:{city:$('#ipt').val()},
+			success:function(data){
+				console.log(data)
+			}
+		})
+		})
+	</script>
+</html>

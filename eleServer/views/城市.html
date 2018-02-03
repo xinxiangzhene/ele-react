@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id = 'uls'></ul>
+	</body>
+	<script src = 'jquery-1.11.0.js'></script>
+	<script>
+		$.ajax({
+			url:'http://localhost:3000/city',
+			dataType:'json',
+			success:function(data){
+				console.log(data)
+			}
+			
+			})
+	</script>
+</html>
