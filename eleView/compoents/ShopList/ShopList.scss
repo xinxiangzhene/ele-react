@@ -1,0 +1,128 @@
+@import "../../lib/reset.scss";
+html,body,#app,.container{
+    @include rect(100%,100%);
+}
+.content{
+    @include rect(100%,100%);
+    @include background-color(#f7f7f7);
+     overflow:auto;
+   
+    .list_top{
+        @include rect(96%,0.6rem);
+        margin:0.1rem auto;
+        padding:0.1rem;
+        input{
+            float:right;
+        }
+        span{
+            time{
+                @include font-size(0.12rem);
+                margin:0 0.06rem;
+            }
+        }
+    }
+    .list_kind{
+        @include rect(96%,auto);
+        margin:0 auto;
+        @include border(0.01rem 0.01rem 0.01rem 0.01rem,#E6E6E6);
+        @include background-color(#fff);
+        padding:0.1rem;
+        ul{
+            @include rect(100%,100%);
+            overflow:hidden;
+            .kind_left{
+                @include rect(6%,100%);
+                float:left;
+            }
+            .kind_right{
+                @include rect(94%,100%);
+                  float:left;
+                  padding-left:0.1rem;
+                  span{
+                        display: inline-block;
+                        margin:0.1rem;
+                     }
+//                span:hover{
+//                   @include text-color(#0089dc);
+//                }
+                  
+                 .list_twoKind{
+                      margin-top:0.1rem;
+                      @include rect(100%,auto);
+                      padding:0.1rem 0.2rem;
+                      @include background-color(#f6f6f6);
+                      span{
+                          margin:0 0.1rem;
+                          font-size:0.12rem;
+                      }
+                 }
+            }
+        }
+    }
+    .list_shoplist{
+        @include rect(94%,auto);
+        margin:0.2rem auto;
+        @include background-color(#fff);
+        overflow:auto;
+        @include border(0.01rem 0.01rem 0.01rem 0.01rem,#E6E6E6);
+        ul{
+             @include rect(100%,100%);
+             li{
+                 @include rect(25%,1.2rem);
+                 float:left;
+                 overflow:hidden;
+                 @include border(0 0 0.01rem 0,#eee);
+                 
+                 &:hover{
+                    @include background-color(#F5F5F5);
+                    H3{
+                        @include text-color(#0089dc)
+                    }
+                 }
+                 a{
+                     color:#333;
+                 }
+                 .shoplist_left{
+                      @include rect(35%,100%);
+                      float:left;
+                      text-align:center;
+                      padding:0.2rem 0 0 0.2rem;
+                      p{ 
+                          @include text-color(#999);
+                          @include font-size(0.1rem);
+                          @include line-height(0.3rem);
+                      }
+                      img{
+                          @include rect(0.7rem,0.7rem);
+                      }
+                 }
+                 .shoplist_right{
+                      @include rect(65%,100%);
+                      float:left;
+                      padding:0.2rem 0.2rem 0.2rem 0.1rem;
+                      h3{
+                           display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    overflow: hidden;
+                    @include line-height(0.2rem)
+                      }
+                     i{
+                         @include font-size(0.08rem); 
+                         @include line-height(0.2rem)
+                     }
+                      p{
+                          @include text-color(#999);
+                          @include font-size(0.12rem);
+                      }
+                 }
+             }
+        }
+    }
+    .active{
+                              @include background-color(#0089dc);
+                              @include text-color(#fff);
+                              border-radius:0.04rem;
+                              padding:0.04rem;
+                          }
+}

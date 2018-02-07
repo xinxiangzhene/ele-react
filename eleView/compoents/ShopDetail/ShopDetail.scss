@@ -1,0 +1,368 @@
+@import "../../lib/reset.scss";
+.bigbox{
+    width:100%;
+    height:100%;
+    overflow:auto;
+}
+
+.shopdetail{
+    width:100%;
+    .DT_header{
+        background:url(https://shadow.elemecdn.com/faas/desktop/media/img/shop-bg.0391dd.jpg) no-repeat left;
+        background-size: cover;
+        width:100%;
+        height:1.5rem;
+        position:relative;
+        .contentDT{
+            width:11.8rem;
+            margin:0 auto;
+            height:1.5rem;
+            .shopguide-info{
+                color: #fff;
+                width:480px;
+                float: left;
+                img:nth-of-type(1){
+                    margin-right:0.15rem;
+                    width:0.95rem;
+                    height:0.95rem;
+                    margin-top:0.2rem;
+                    border-radius: 50%;
+                    float: left;
+                    border: 0.04rem solid #FFF;
+                    border: 0.04rem solid rgba(255,255,255,.3);
+                }
+                .shang_DT{
+                    min-width:180px;
+                    height:71px;
+                    margin-top:30px;
+                    h1{
+                        font-size:20px;
+                    }
+                    p{
+                      font-size:18px;  
+                    }
+                }
+            }
+            .shopguide-server{
+                float: right;
+                width:7rem;
+                height:80px;
+                margin-top:35px;
+                padding-right:1rem;
+                text-align:right;
+                color: #fff;
+                span{
+                    font-size:15px;
+                    display:inline-block;
+                    text-align:center;
+                    margin-right:100px;
+                }
+                span:nth-of-type(1){
+                    display:inline-block;
+                    min-width:42px;
+                    max-width:60px;
+                    height:63px;
+                    em{
+                        font-size:16px;
+                    }
+                }
+                span:nth-of-type(2){
+                    display:inline-block;
+                    min-width:42px;
+                    max-width:60px;
+                    height:63px;
+                    em{
+                        font-size:16px;
+                    }
+                }
+                span:nth-of-type(3){
+                    display:inline-block;
+                    min-width:42px;
+                    max-width:100px;
+                    height:63px;
+                    em{
+                        font-size:16px;
+                    }
+                }
+            }
+            .shopguide-favor{
+                position: absolute;
+                top:0px;
+                right:160px;
+                width:80px;
+                height:70px;
+                padding:10px 5px;
+                text-align: center;
+                color: #eee;
+                background: rgba(255,255,255,.1);
+                border-radius:0 0 5px 5px;
+                
+            }
+        }
+    }
+}
+//所有商品 评价 商家资质 评分
+.shopcontent{
+    width:100%;
+    background:#FFF;
+    min-height:58px;
+    .shopcontent_cont{
+        background-color:#fff ;
+        min-height:58px;
+        width:1180px;
+        margin:0 auto;
+    }
+    .shopcontent_head{
+        float: left;
+        width:75%;
+        min-height:58px;
+        ul:nth-of-type(1){
+            width: 340px;
+            line-height:58px;
+            li{
+                font-size:16px ;
+                width: 112px;
+                float: left;
+                text-align: center;
+            }
+            li:nth-of-type(1){
+                color: #0089dc;
+                
+            }
+        }
+        ul:nth-of-type(2){
+            float: right;
+            line-height:58px;
+            li{
+                padding:0 15px;
+                float: left;
+                i{
+                    margin-left:5px;
+                    color:#999;
+                }
+            }
+            li:nth-of-type(5){
+                
+                span:nth-of-type(1){
+                    background-color: #0089dc;
+                    border-color: #0089dc;
+                    color: #fff;
+                    padding: 8px;
+                    margin-left: -5px;
+                    border: 1px solid #ddd;
+                }
+                span:nth-of-type(2){
+                    border-color: #0089dc;
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-left:0;
+                    color: #999;
+                }
+            }
+            
+        }
+    }
+    .shopcontent_head_right{
+        position: relative;
+        float: right;
+        margin-top:15px;
+        input{
+            height:30px;
+            text-indent:6px;
+        }
+        button{
+            position: absolute;
+            top: 0px;
+            right:5px;
+            border:0;
+            margin-top:5px;
+            background:#fff;
+            font-size:16px;
+        }
+    }
+}
+.shopmain_big{
+    width:100%;
+    min-height:700px;
+    background:#f7f7f7;
+    overflow: hidden;
+    .shopmain{
+        width: 1180px;
+        margin:0 auto;
+        min-height:700px;
+        margin-top:20px;
+        .shopAction_left{
+            float: left;
+            width:86.5%;
+            .shopmen_nav{
+                width:86.5%;
+                text-align: left;
+                min-height:100px;
+                padding: 10px 15px 5px;
+                background: #fff;
+                display: inline-block;
+                border: 1px solid #eee;
+                z-index: 101;
+                li{
+                    width:153px;
+                    height:27px;
+                    float: left;
+                    display: inline-block;
+                    margin: 5px;
+                    padding: 3px 10px;
+                    width: 18%;
+                    border-radius: 2px;
+                    color: #666;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    vertical-align: top; 
+                }
+                li:hover{
+                    background:#f7f7f7;
+                }
+                li:nth-of-type(1){
+                    width:153px;
+                    height:27px;
+                    color:#fff;
+                    background:#0089dc;
+                }
+            }
+            .shopmen_content{
+                margin-top: 0px;
+                
+                .shopmin_lis1{
+                    width:100%;
+                    h3{
+                        display: inline-block;
+                        width:800px;
+                        height:60px;
+                        padding: 20px 0 10px 15px;
+                        font-size: 20px;
+                        font-weight:400;
+                        text-align:left;
+                         span{
+                            font-size: 12px;
+                            color: #999;  
+                            margin-left:5px;
+                        }  
+                    }
+                    .shopmin_food{
+                        float: left;
+                        margin-right:2%;
+                        padding-right: 10px;
+                        width: 42.25%;
+                        height: 102px;
+                        margin-bottom: 12px;
+                        font-size: 12px;
+                        background-color: #fff;
+                        border: 1px solid #eee;
+                        
+                        span{
+                            img{
+                                float: left;
+                                margin-right: 14px;
+                                width: 100px;
+                                height: 100px;
+                            } 
+                        }
+                        .shopmin_food_DT{
+                            float: left;
+                            width:200px;
+                            height:100px;
+                            background:#fff;
+                            p:nth-of-type(1){
+                                margin-top:10px;
+                                font-size: 14px;
+                                font-weight: 700;
+                            }
+                            p:nth-of-type(2){
+                                color:#999;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
+                            p:nth-of-type(3){
+                                color:#999;
+                                font-size:12px;
+                            }
+                            p:nth-of-type(4){
+                                bottom: 10px;
+                                span:nth-of-type(1){
+                                    font-size:15px;
+                                    color: red;
+                                    font-weight:550;
+                                }
+                                span:nth-of-type(2){
+                                    color: #999;
+                                    font-size: 12px;
+                                    font-weight: lighter;
+                                    margin-left:5px;
+                                }
+                            }
+                            
+                        }
+                        .shopmin_food_btn{
+                            float:right;
+                            width:100px; 
+                            height:100px;
+                            button{
+                                display: inline-block;
+                                background-color: #0089dc;
+                                color: #fff;
+                                margin-top:60px;
+                                border: 0;
+                                width: 90px;
+                                height: 26px;
+                                line-height: 26px;
+                                border-radius: 20px;
+                            }
+                            
+                        }
+                    } 
+                    
+                      
+                }
+                
+            }
+        }
+        .shopAction_right{
+            float:right;
+        }
+        
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

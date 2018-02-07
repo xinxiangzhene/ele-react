@@ -9,6 +9,10 @@
     "build": "webpack"
   },
   "dependencies": {
+    "antd": "^3.2.0",
+    "antd-mobile": "^2.1.6",
+    "element-react": "^1.4.5",
+    "element-theme-default": "^1.4.13",
     "es6-promise": "^4.2.4",
     "fastclick": "^1.0.6",
     "fetch-jsonp": "^1.1.3",

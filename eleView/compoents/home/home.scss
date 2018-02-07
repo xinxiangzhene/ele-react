@@ -1,14 +1,13 @@
 @import "../../lib/reset.scss";
-
 .homeup{
+
     @include rect(100%,5rem);
-    @include position();
+    z-index:200;
     background: url(https://shadow.elemecdn.com/faas/desktop/media/img/map.012b5c.png) center no-repeat #008de1;
 //   @include background-size(cover);
     .container{
         @include rect(11.80rem,5rem);
         margin:0 auto;
-        overflow: auto;
         .home_header{
             padding:0.25rem;
             @include text-color(#fff);
@@ -53,11 +52,13 @@
                     width: 280px;
                 }
             }
-            .home_nav{
-                @include line-height(0.56rem);
-                margin: 0 auto;
+            .home_nav{       
+                .home_city{
+                    @include line-height(0.56rem); 
+                }
+                margin: auto;
                 width: 50%;
-                z-index: 900;
+                z-index: 500;
                 .home_nav_city{
                     float: left;
                     width: 100px;
@@ -69,6 +70,12 @@
                         height: 56px;
                         font-size: 20px;
                         color: #333;
+                     display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    overflow: hidden;
+                    padding:0 0.04rem;
+                    @include border(0 0.01rem 0 0,#eee)
                         span:nth-of-type(1){
                          position: absolute;
                             top: 0;
@@ -91,6 +98,7 @@
                             width: 100%;
                             font-size: 16px;
                         }
+                        
                         .home_but{
                             position: absolute;
                             top: 0;
@@ -99,26 +107,194 @@
                             padding: 0;
                             border:none;
                             border-radius:0.03rem;
-                            line-height: 0.56rem;
+                          line-height: 0.56rem;
                             font-size: 0.20rem;
                             background-color: #f74342;
                             color: #fff;
                         }
                     }
                     .home_yinchang{
-                        
-                        
+                        position: absolute;
+                        top:3.65rem;
+                        left:2.96rem;
+                        z-index: 1200;
+                        background-color: #fff;
+                        box-shadow: 0 10px 10px 0 rgba(0,0,0,.085);
+                        @include rect(6.62rem,3.5rem);
+                        overflow:auto;
+                        padding:0.2rem;
+                        .change_top,.change_bottom{
+                            
+                             
+                             overflow:hidden
+                        }
+                        .change_top{
+                         @include rect(100%,0.3rem);
+                        @include border(0 0 0.01rem 0,#eee);
+                               div{
+                                @include rect(49%,0.3rem);
+                                float:left;
+                                span{
+                                    @include text-color(#0089dc)
+                                }
+                             }
+                        }
+                        .change_bottom{
+                        line-height:0.3rem;
+                         @include rect(100%,0.5rem);
+                         padding:0.1rem 0;
+                               div{
+                                @include rect(49%,0.3rem);
+                                float:left;
+                                span{
+                                    display:inline-block;
+                                    margin: 0 0 0 14px;
+                                    padding: 2px 16px;
+                                    background: #ff6000;
+                                    border: none;
+                                    border-radius: 3px;
+                                    font-size: 16px;
+                                    color: #fff;
+                                    cursor: pointer;
+                                }
+                                &:nth-of-type(1){
+                                    @include border(0 0.01rem 0 0,#eee)
+                                }
+                             }
+                        }
+                        .diqu{
+                            @include rect(100%,auto);
+                            li{
+                                @include rect(100%,auto);
+                                @include border(0 0 0.01rem 0,#eee);
+                                p{
+                                    line-height:0.3rem;
+                                    color:#333
+                                }
+                                 span{
+                                    color:#999;
+                                    font-size:0.12rem;
+                                }
+                            }
+                        }
+                        .city{
+                            @include rect(100%,auto);
+                            @include border(0.01rem 0 0 0,#eee);
+                            li{
+                                @include rect(100%,auto);
+                                border-top: 0.01rem solid #eee;
+                                span{
+                                    display:inline-block;
+                                    width:0.7rem;
+                                    height:0.22rem;
+                                    margin:0.1rem;
+                                    margin-left:0;
+                                    display: -webkit-inline-box;
+                                    -webkit-box-orient: vertical;
+                                    -webkit-line-clamp: 1;
+                                    overflow: hidden;
+                                    }
+                                span:hover{
+                                    color:#0089dc;
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
         
     }
-
-
-
 }
-
+.homefooter{
+    z-index:200;
+    width:100%;
+    height:4rem;
+    text-align: center;
+    .foot{
+        display: inline-block;
+        padding-top:0.6rem;
+        padding-bottom:0.9rem;
+        text-align: left;
+        .foot_imgs{
+            position: relative;
+            width:1.6rem;
+            padding:0.15rem;
+            border:0.01rem solid #ddd;
+            vertical-align: middle;
+            display: inline-block;
+            img{
+                width:1.28rem;
+                height:1.28rem;
+            }
+            span{
+                position: absolute;
+                bottom: 0;
+                margin-bottom: -10px;
+                left:0.3rem;
+                right:0.3rem;
+                background-color: #fff;
+                text-align: center;
+                color: #999;
+            }
+        }
+        .foot_txt{
+            margin-left:0.2rem;
+            font-size:0.16rem;
+            vertical-align: middle;
+            display: inline-block;
+            .p1{
+                text-align: left;
+                font-size:0.16rem;
+                margin: 0;
+                padding: 0;
+            }
+            .st{
+                font-size:0.32rem;
+                color: #f74342;
+                text-align: left;
+            }
+            .p2{
+               text-align: left;
+                font-size:0.16rem;
+                margin: 0;
+                padding: 0; 
+            }
+        }
+        
+    }
+    .homelink{
+        color: #666;
+        line-height: 1;
+        margin-bottom:0.1rem;
+        display: block;
+        a:nth-of-type(1){
+            border-left: 0;
+        }
+        a{
+            display: inline-block;
+            padding-left: 0.07rem;
+            padding-right: 0.07rem;
+            border-left: 1px solid #ccc;
+        }
+    }
+    .homefoo{
+        font-size:0.13rem;
+        clear: both;
+        padding-top:0;
+        color: #999;
+        text-align: center;
+    }
+    .homefo{
+        width:11.80rem;
+        margin: 0 auto;
+        padding: .5em 0;
+        img{
+            width:0.86rem;
+            height: 0.3rem;
+        }
+    }
+    }
 
 
 

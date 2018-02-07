@@ -7,7 +7,6 @@ import Es6Promise from 'es6-promise'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 
 import App from './App.js'
-//import './main.scss'
 
 FastClick.attach(document.body)
 Es6Promise.polyfill()
@@ -22,7 +21,7 @@ class ErrorBoundary extends React.Component {
   }
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return <h1>哈哈,又报错了!!!</h1>;
     }
     return this.props.children;
   }
