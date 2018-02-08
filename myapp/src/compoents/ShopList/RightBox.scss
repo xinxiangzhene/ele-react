@@ -12,7 +12,7 @@
     padding:0 0.1rem;
     background:#fff;
     .box_left{
-        @include rect(0.44rem,100%);
+        @include rect(0.4rem,100%);
         padding:0 0.1rem;
         position:absolute;
         background:#504d53;
@@ -23,11 +23,13 @@
     }
     .cart{
         margin-top:1.4rem;
+        cursor:pointer;
     }
     .goTop{
         margin-top:3rem;
         i{
             font-size:0.26rem;
+            cursor:pointer;
         }
     }
 }

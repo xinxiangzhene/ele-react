@@ -6,7 +6,7 @@ import Header from './../Header/Header.js'
 import './ShopList.scss'
 import Footer from "../Footer/Footer.js"
 import RightBox from './RightBox.js'
-import { Rate, Loading } from 'element-react';
+import { Rate, Loading,Popover } from 'element-react';
 class Content extends React.Component {
 	constructor(props) {
 		super(props)
@@ -91,12 +91,13 @@ class Content extends React.Component {
 		}else{
 			this.refs.login.style.display = 'block';
 		}
+		
 		function more(){
 		$(".content").on("scroll", function() {
 			var $scrollTop = $(".content").scrollTop();
-			var $scrollTop3 = $(".container")[0].clientHeight;
+			var $scrollTop3 = $("body")[0].clientHeight;
 			var $scrollTop2 = $(".content")[0].scrollHeight;
-			if($scrollTop + $scrollTop3 >= $scrollTop2-0.5) {
+			if(Math.floor($scrollTop + $scrollTop3) >= $scrollTop2-150) {
 				console.log('滚动到底部')
 				var arr = that.state.shopList
 				page++;
@@ -129,7 +130,12 @@ class Content extends React.Component {
 			}
 		})
 		}
-		
+document.body.onfocus = function(){
+document.title =that.state.address;
+};
+document.body.onblur = function(){
+document.title = '记得回来点单哦！--饿了么';
+};
 	}
 
 	//店铺分类列表
@@ -268,7 +274,9 @@ class Content extends React.Component {
        		<ul>
       		{
       			this.state.shopList.map((item,i)=>{
-      			return(<li key = {i}><NavLink to = {'/shopDetail/'+item.id} >
+      			return(
+      			 <Popover style = {{border:'2px solid #ddd'}} key = {i} placement="right-start" title={item.name} width="200" trigger="hover" content="这是一段容,这是一段容,这是一段容,这是一段容。">
+      			<li><NavLink to = {'/shopDetail/'+item.id} >
       			<div className = 'shoplist_left'>
 <img width = '0.1rem' alt='' height = '0.1rem' src ={'http://fuss10.elemecdn.com/'+item.image_path+'.'+item.image_path.substr(32)+'?imageMogr2/thumbnail/70x70'}/>  
 						<p>{item.order_lead_time}分钟</p>
@@ -278,12 +286,15 @@ class Content extends React.Component {
       			<Rate disabled={true} value={item.rating}/>
       			<p>配送费¥{item.float_delivery_fee}</p>
       		</div>
-      			</NavLink></li>)
+      			</NavLink></li>
+     			 </Popover>	
+      	)
       			})
       		}
       	</ul>
+      		<div className="more" ref ='login'>查看更多商家,请<NavLink to = '/home'>登录</NavLink></div>
        </div>
-       <div ref ='login'>查看更多商家,请<NavLink to = '/home'>登录</NavLink></div>
+       
        <Footer />
       </div>
 		)
