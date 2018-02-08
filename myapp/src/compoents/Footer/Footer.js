@@ -1,7 +1,4 @@
 import React from 'react'
-import {Route,Switch,Redirect} from 'react-router-dom'
-
-
 import "./Footer.scss"
 
 class Footer extends React.Component{
@@ -45,7 +42,7 @@ class Footer extends React.Component{
 						</ul>
 					</div>
 					<div className="Footerbox_foot_list5">
-						<img src="https://shadow.elemecdn.com/faas/desktop/media/img/appqc.95e532.png"/>
+						<img alt = '' src="https://shadow.elemecdn.com/faas/desktop/media/img/appqc.95e532.png"/>
 						<div className="Footerbox_foot_list51">
 							<h3>下载手机版</h3>
 							<p>扫一扫,手机订餐方便</p>
@@ -57,7 +54,7 @@ class Footer extends React.Component{
 						<p>增值电信业务许可证 : 沪B2-20150033|上海工商行政管理| Copyright ©2008-2017 ele.me, All Rights Reserved.</p>
 					</div>
 					<div className="Footerbox_foot_list7">
-						<img src="https://shadow.elemecdn.com/faas/desktop/media/img/picp_bg.e373b3.jpg"/>
+						<img alt = '' src="https://shadow.elemecdn.com/faas/desktop/media/img/picp_bg.e373b3.jpg"/>
 					</div>
 				</div>
 			</div>

@@ -6,9 +6,9 @@ import Login from './compoents/login/Login.js'
 
 import ShopDetail from './compoents/ShopDetail/ShopDetail.js'
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+//constructor(props) {
+//  super(props);
+//}
   render() {
     return (
       <div className = 'container'>

@@ -1,7 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import $ from 'jquery'
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 import { baseUrl } from "./../../common/base.js"
 import Header from './../Header/Header.js'
 import './ShopList.scss'
@@ -86,13 +85,10 @@ class Content extends React.Component {
 			}
 		})
 		var page = 1;
-		var isRequest = false;
 		if(localStorage.getItem('user')){
-			more()
-			console.log(1)
+				more()
 			this.refs.login.style.display = 'none'
 		}else{
-			console.log(0)
 			this.refs.login.style.display = 'block';
 		}
 		function more(){
@@ -100,10 +96,7 @@ class Content extends React.Component {
 			var $scrollTop = $(".content").scrollTop();
 			var $scrollTop3 = $(".container")[0].clientHeight;
 			var $scrollTop2 = $(".content")[0].scrollHeight;
-			if(isRequest == true) {
-				return;
-			}
-			if($scrollTop + $scrollTop3 >= $scrollTop2-1) {
+			if($scrollTop + $scrollTop3 >= $scrollTop2-0.5) {
 				console.log('滚动到底部')
 				var arr = that.state.shopList
 				page++;
@@ -115,7 +108,7 @@ class Content extends React.Component {
 						fullscreen: false
 					});
 				}, 500);
-
+				console.log(page)
 				$.ajax({
 					url: baseUrl + 'shopList',
 					dataType: 'json',
@@ -127,6 +120,7 @@ class Content extends React.Component {
 					},
 					success: (data) => {
 						var arrs = arr.concat(data)
+							console.log(arrs)
 						that.setState({
 							shopList: arrs
 						})
@@ -276,7 +270,7 @@ class Content extends React.Component {
       			this.state.shopList.map((item,i)=>{
       			return(<li key = {i}><NavLink to = {'/shopDetail/'+item.id} >
       			<div className = 'shoplist_left'>
-<img width = '0.1rem' height = '0.1rem' src ={'http://fuss10.elemecdn.com/'+item.image_path+'.'+item.image_path.substr(32)+'?imageMogr2/thumbnail/70x70'}/>  
+<img width = '0.1rem' alt='' height = '0.1rem' src ={'http://fuss10.elemecdn.com/'+item.image_path+'.'+item.image_path.substr(32)+'?imageMogr2/thumbnail/70x70'}/>  
 						<p>{item.order_lead_time}分钟</p>
 						</div>
       			<div className = 'shoplist_right'>

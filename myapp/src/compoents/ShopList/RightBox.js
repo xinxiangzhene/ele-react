@@ -1,10 +1,6 @@
 import React from 'react'
-import $ from 'jquery'
-import { Route, Switch, Redirect ,NavLink} from 'react-router-dom'
-
-import { baseUrl } from "./../../common/base.js"
 import './RightBox.scss'
-import { Notification } from 'element-react';
+import $ from 'jquery'
 export default class RightBox extends React.Component {
   constructor(props,context) {
     super(props);
@@ -12,10 +8,23 @@ export default class RightBox extends React.Component {
     		isShow:true
     }
   }
+  
+  componentDidMount(){
+  	var that = this;
+  	this.refs.top.style.display = 'none';
+  	$(".content").on("scroll", function() {
+			var $scrollTop = $(".content").scrollTop();
+					if($scrollTop>=500){
+						that.refs.top.style.display = 'block';
+					}else if($scrollTop<400){
+						that.refs.top.style.display = 'none';
+					}
+
+			})
+  }
   show(){
   	var that = this;
   	if(this.state.isShow){
-//		that.refs.rightBox.style.right = '0';
 that.refs.rightBox.style.transform='translate(-356px)';
   		that.setState({
   			isShow:false
@@ -27,7 +36,9 @@ that.refs.rightBox.style.transform='translate(-356px)';
   		})
   	}
   }
-  
+  top(){
+  	$(".content").scrollTop(0)
+  }
   render(){
   	return(
   	<div ref = 'rightBox' className = 'rightBox'>
@@ -35,6 +46,9 @@ that.refs.rightBox.style.transform='translate(-356px)';
 		  				<div onClick = {this.show.bind(this)} className = 'cart'>
 		  				<i className = 'iconfont icon-gouwuche'></i>
 		  				 购物车
+		  				</div>
+		  				<div className = 'goTop'>
+		  				<i ref = 'top' className = 'iconfont icon-tubiao102' onClick = {this.top.bind(this)}></i>
 		  				</div>
 		  				</div>
 		  				<div className = 'box_right'>

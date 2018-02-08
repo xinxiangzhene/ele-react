@@ -1,13 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import $ from 'jquery'
-import { Route, Switch, Redirect ,NavLink} from 'react-router-dom'
-
 import { baseUrl } from "./../../common/base.js"
 import "./ShopDetail.scss"
 import Header from "../Header/Header.js"
 import Footer from "../Footer/Footer.js"
-import { Rate, Loading } from 'element-react';
+import { Rate} from 'element-react';
 
 class Shop extends React.Component {
   constructor(props,context) {
@@ -81,7 +78,7 @@ class Shop extends React.Component {
 						<div className="DT_header">
 							<div className="contentDT">
 									<div className="shopguide-info">
-										<img src={'http://fuss10.elemecdn.com/'+shopDT+'.'+shopDT.substr(32)+'?imageMogr2/thumbnail/70x70'}/>
+										<img alt = ''  src={'http://fuss10.elemecdn.com/'+shopDT+'.'+shopDT.substr(32)+'?imageMogr2/thumbnail/70x70'}/>
 										<div className="shang_DT">
 											<h1>{this.state.shopDT.name}</h1>
 											<p>------({this.state.shopDT.rating_count})</p>
@@ -206,7 +203,7 @@ class Shop extends React.Component {
 														return (
 														<div key = {ind} className="shopmin_food">
 															<span>
-																<img src={'http://fuss10.elemecdn.com/'+ite.image_path+'.'+ite.image_path.substr(32)+'?imageMogr2/thumbnail/70x70'}/>
+																<img alt = ''  src={'http://fuss10.elemecdn.com/'+ite.image_path+'.'+ite.image_path.substr(32)+'?imageMogr2/thumbnail/70x70'}/>
 															</span>
 															<div className="shopmin_food_DT">
 																<p>{ite.name}</p>

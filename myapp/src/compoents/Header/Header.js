@@ -1,6 +1,5 @@
 import React from 'react'
-import $ from 'jquery'
-import { Route, Switch, Redirect ,NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 import "./Header.scss"
 
@@ -19,7 +18,7 @@ class Home extends React.Component{
 				<div className="shop_header">
 					<div className="shop_head_cont">
 						<div className="shop_head_login">
-							<img src="http://cangdu.org:8001/img/1616620aef84349.png"/>
+							<img src="http://cangdu.org:8001/img/1616620aef84349.png" alt='' />
 						</div>
 						
 						<div className="shop_head_list1">首页</div>
@@ -34,7 +33,7 @@ class Home extends React.Component{
 								<span>手机应用</span>
 								<div className="shop_wema">
 									<span>扫一扫, 手机订餐更方便</span>
-									<img src="https://shadow.elemecdn.com/faas/desktop/media/img/appqc.95e532.png"/>
+									<img src="https://shadow.elemecdn.com/faas/desktop/media/img/appqc.95e532.png" alt=''/>
 								</div>
 							</div>
 							<div className="shop_head_float3">

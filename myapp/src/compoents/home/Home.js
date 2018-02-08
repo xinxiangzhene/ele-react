@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import $ from 'jquery'
 import './home.scss'
 import { baseUrl } from "./../../common/base.js"
@@ -21,7 +21,6 @@ class Home extends React.Component {
 		this.refs.city.style.display = 'none'
 		this.refs.box.style.display = 'none'
 		var arr = []
-		var that = this;
 		var cityList = []
 		$.ajax({
 			url: baseUrl + 'city',
@@ -77,7 +76,7 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 		if(this.refs.ipt.value.length > 0) {
 			this.refs.box.style.display = 'block'
 			this.refs.adrList.style.display = 'block'
-		}else if(this.refs.ipt.value.length==0){
+		}else if(this.refs.ipt.value.length===0){
 			this.refs.box.style.display = 'none'
 			this.refs.adrList.style.display = 'none'
 		}
@@ -123,7 +122,7 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 					<div className='home_header'>
 						<h1>
 							<a>
-								<img src="https://shadow.elemecdn.com/faas/desktop/media/img/map-logo.9a26ef.png"/>
+								<img alt = ''  src="https://shadow.elemecdn.com/faas/desktop/media/img/map-logo.9a26ef.png"/>
 							</a>
 						</h1>
 						<span className='home_header_right'>
@@ -135,7 +134,7 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 					</div>
 					<div className='home_main'>
 						<h2>
-							<img src="https://shadow.elemecdn.com/faas/desktop/media/svg/map-logo-center.425427.svg" />
+							<img alt = ''  src="https://shadow.elemecdn.com/faas/desktop/media/svg/map-logo-center.425427.svg" />
 						</h2>
 						<div className='home_nav'>
 							<div className='home_nav_city'>
@@ -194,7 +193,7 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 			<div style={{overflow:"auto"}} className="homefooter">
 				<div className="foot">
 					<div className="foot_imgs">
-						<img src="https://shadow.elemecdn.com/faas/desktop/media/img/appqc.95e532.png"/>
+						<img alt = ''  src="https://shadow.elemecdn.com/faas/desktop/media/img/appqc.95e532.png"/>
 						<span>扫码下载 APP</span>
 					</div>
 					<div className="foot_txt">
@@ -220,7 +219,7 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 					 Copyright ©2008-2017 上海拉扎斯信息科技有限公司, All Rights Reserved.
 				</div>
 				<div className="homefo">
-					<img src="https://shadow.elemecdn.com/faas/desktop/media/img/picp_bg.e373b3.jpg"/>
+					<img alt = ''  src="https://shadow.elemecdn.com/faas/desktop/media/img/picp_bg.e373b3.jpg"/>
 				</div>
 			</div>
 			</div></div>
