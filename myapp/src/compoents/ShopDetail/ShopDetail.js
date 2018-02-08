@@ -62,17 +62,14 @@ class Shop extends React.Component {
 	}
 	
 	scrollToAnchor(anchorName){
-	
 		$('.shopmen_nav').find('li').eq(anchorName-1).addClass('active').siblings().removeClass('active')
     if (anchorName) {
         let anchorElement = document.getElementById(anchorName);
         	console.log(anchorElement.offsetTop)
         	$(".bigbox").animate({
-                scrollTop: anchorElement.offsetTop-140
+                scrollTop: anchorElement.offsetTop-160
             }, 400);
-        if(anchorElement) { anchorElement.scrollIntoView() }
-  
-       
+        if(anchorElement) { anchorElement.scrollIntoView()}
     }
   }
 	//列表排序
