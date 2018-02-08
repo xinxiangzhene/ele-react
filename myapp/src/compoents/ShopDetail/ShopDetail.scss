@@ -287,28 +287,28 @@
                 border: 1px solid #eee;
                 z-index: 101;
                 li{
-                    width:153px;
+                    width:100px;
                     height:27px;
                     float: left;
+                    text-align:center;
                     display: inline-block;
                     margin: 5px;
                     padding: 3px 10px;
                     width: 18%;
                     border-radius: 2px;
-                    color: #666;
                     text-overflow: ellipsis;
                     overflow: hidden;
                     vertical-align: top; 
                 }
-                li:hover{
-                    background:#f7f7f7;
-                }
-                li:nth-of-type(1){
-                    width:153px;
-                    height:27px;
-                    color:#fff;
-                    background:#0089dc;
-                }
+//              li:hover{
+//                  background:#f7f7f7;
+//              }
+//              li:nth-of-type(1){
+//                  width:153px;
+//                  height:27px;
+//                  color:#fff;
+//                  background:#0089dc;
+//              }
             }
             .shopmen_content{
                 .shopmin_lis1{
@@ -413,7 +413,12 @@
         
     }
 }
-
+ .active{
+          @include background-color(#0089dc);
+          @include text-color(#fff);
+          border-radius:0.04rem;
+          padding:0.04rem;
+          }
 
 
 

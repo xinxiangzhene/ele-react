@@ -37,7 +37,10 @@ that.refs.rightBox.style.transform='translate(-356px)';
   	}
   }
   top(){
-  	$(".content").scrollTop(0)
+//	$(".content").scrollTop(0)
+		$(".content").animate({
+                scrollTop: 0
+            }, 600);
   }
   render(){
   	return(

@@ -53,14 +53,23 @@ class Shop extends React.Component {
 					that.refs.shopmen_nav.style.position = 'static'
 				}
 		})
+		setTimeout(()=>{
+			$('.shopmen_nav').find('li').eq(0).addClass('active')
+		},1000)
 	}
 	addCart(data){
 		console.log(data)
 	}
 	
 	scrollToAnchor(anchorName){
+	
+		$('.shopmen_nav').find('li').eq(anchorName).addClass('active').siblings().removeClass('active')
     if (anchorName) {
         let anchorElement = document.getElementById(anchorName);
+        	console.log(anchorElement.offsetTop)
+        	$(".bigbox").animate({
+                scrollTop: anchorElement.offsetTop-140
+            }, 400);
         if(anchorElement) { anchorElement.scrollIntoView() }
   
        
@@ -87,7 +96,7 @@ class Shop extends React.Component {
   		var shopDT = this.state.shopDTimg;
     return (
     	
-    	<div className="bigbox">
+    	<div className="bigbox" id = 'bigbox'>
     		<Cart />
 				<Header />
 				
@@ -101,8 +110,6 @@ class Shop extends React.Component {
 												<Rate disabled={true} value={this.state.shopDT.rating} showText={true} />
 											<p>({this.state.shopDT.rating_count})</p>
 										</div>
-									
-						
 						<div className="shang_DT_tan">
 										
 													<ul>
