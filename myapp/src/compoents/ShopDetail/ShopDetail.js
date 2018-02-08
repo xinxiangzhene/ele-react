@@ -63,7 +63,7 @@ class Shop extends React.Component {
 	
 	scrollToAnchor(anchorName){
 	
-		$('.shopmen_nav').find('li').eq(anchorName).addClass('active').siblings().removeClass('active')
+		$('.shopmen_nav').find('li').eq(anchorName-1).addClass('active').siblings().removeClass('active')
     if (anchorName) {
         let anchorElement = document.getElementById(anchorName);
         	console.log(anchorElement.offsetTop)
@@ -208,7 +208,7 @@ class Shop extends React.Component {
 										{
 											this.state.detail.map((item,index)=>{
 												return (
-													<li onClick = {this.scrollToAnchor.bind(this,index)} key = {index}>{item.name}</li>
+													<li onClick = {this.scrollToAnchor.bind(this,index+1)} key = {index}>{item.name}</li>
 												)
 											})
 										}
@@ -219,7 +219,7 @@ class Shop extends React.Component {
 									this.state.detail.map((item,index)=>{
 										return (
 											<div   key = {index} className="shopmin_lis1">
-												<h3 id = {index}>
+												<h3 id = {index+1}>
 													{item.name}
 													<span>{item.description}</span>
 												</h3>
