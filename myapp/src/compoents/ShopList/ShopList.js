@@ -20,6 +20,9 @@ class Content extends React.Component {
 			address: '',
 			page: 0,
 			fullscreen: false
+		},
+		this.conT={
+			
 		}
 	}
 
@@ -37,6 +40,7 @@ class Content extends React.Component {
 			geohash: geohash,
 			latitude: latitude,
 			longitude: longitude
+			
 		})
 		var that = this;
 
@@ -121,7 +125,6 @@ class Content extends React.Component {
 					},
 					success: (data) => {
 						var arrs = arr.concat(data)
-							console.log(arrs)
 						that.setState({
 							shopList: arrs
 						})
@@ -174,6 +177,7 @@ document.title = '记得回来点单哦！--饿了么';
 					page: this.state.page
 				},
 				success: (data) => {
+//					console.log(data)
 					this.setState({
 						shopList: data
 					})
@@ -229,6 +233,7 @@ document.title = '记得回来点单哦！--饿了么';
 		})
 	}
 	render() {
+		console.log(this.state.shopList)
 		return(
 			<div className = 'content'>
 		<RightBox />
@@ -240,6 +245,11 @@ document.title = '记得回来点单哦！--饿了么';
       		<span>当前位置:<time>{this.state.address}</time></span>
       		<NavLink to = '/home'><i style ={{color:'#0089dc',fontSize:'0.12rem'}}>[切换地址]</i></NavLink>
       		<input type = 'search' placeholder="搜索商家,美食..."/>	
+      </div>
+      <div className = 'list_top_logo'>
+      	<div>
+      		<img src="https://shadow.elemecdn.com/faas/desktop/media/img/takeout.408a87.png" />
+      	</div>
       </div>
       <div className = 'list_kind'>
       				<ul>
@@ -275,7 +285,32 @@ document.title = '记得回来点单哦！--饿了么';
       		{
       			this.state.shopList.map((item,i)=>{
       			return(
-      			 <Popover style = {{border:'2px solid #ddd'}} key = {i} placement="right-start" title={item.name} width="200" trigger="hover" content="这是一段容,这是一段容,这是一段容,这是一段容。">
+      			 <Popover style = {{border:'2px solid #ddd'}} key = {i} placement="right-start"  width="300" trigger="hover" content={(
+      			 	<div className="list_shoplist_tanchu">
+      			 	<div>
+			      			 			<p>{item.name}</p>
+      			 		{
+      			 			item.flavors.map((ite,k)=>{
+      			 				return (
+			      			 		<span key = {k}>{ite.name}</span>
+      			 				)
+      			 			})
+      			 		}
+      			 		</div>
+      			 		<div>
+      			 			<span className="iconfont icon-huopiaotongxing"></span>
+      			 			{
+      			 			item.supports.map((ite1,k1)=>{
+      			 				return (
+			      			 		<span key = {k1}>{ite1.description}</span>
+      			 				)
+      			 			})
+      			 		}
+      			 			<p><span>{item.piecewise_agent_fee.description}元</span>|<span>平均{item.order_lead_time}分钟送达</span></p>
+      			 			<p>{item.name}餐厅</p>
+      			 		</div>
+      			 	</div>
+      			 )}>
       			<li><NavLink to = {'/shopDetail/'+item.id} >
       			<div className = 'shoplist_left'>
 <img width = '0.1rem' alt='' height = '0.1rem' src ={'http://fuss10.elemecdn.com/'+item.image_path+'.'+item.image_path.substr(32)+'?imageMogr2/thumbnail/70x70'}/>  
@@ -292,8 +327,8 @@ document.title = '记得回来点单哦！--饿了么';
       			})
       		}
       	</ul>
-      		<div className="more" ref ='login'>查看更多商家,请<NavLink to = '/home'>登录</NavLink></div>
        </div>
+       <div className="more_wai"><div className="more" ref ='login'>查看更多商家,请<NavLink to = '/home'>登录</NavLink></div></div>
        
        <Footer />
       </div>
