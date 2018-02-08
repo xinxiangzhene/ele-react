@@ -41,6 +41,7 @@ html,body,#app,.container{
                   span{
                         display: inline-block;
                         margin:0.1rem;
+                        cursor:pointer;
                      }
 //                span:hover{
 //                   @include text-color(#0089dc);
@@ -54,6 +55,7 @@ html,body,#app,.container{
                       span{
                           margin:0 0.1rem;
                           font-size:0.12rem;
+                          cursor:pointer;
                       }
                  }
             }
@@ -70,6 +72,7 @@ html,body,#app,.container{
              li{
                  @include rect(25%,1.2rem);
                  float:left;
+                 cursor:pointer;
                  overflow:hidden;
                  @include border(0 0 0.01rem 0,#eee);
                  
