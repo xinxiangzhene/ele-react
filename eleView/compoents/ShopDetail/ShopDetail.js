@@ -86,6 +86,53 @@ class Shop extends React.Component {
 											<h1>{this.state.shopDT.name}</h1>
 											<p>------({this.state.shopDT.rating_count})</p>
 										</div>
+									
+						
+						<div className="shang_DT_tan">
+										
+													<ul>
+														<li className="shang_DT_tanlist1">
+															<div className="shang_DT_divli1">
+																<h2>{this.state.shopDT.rating}</h2>
+																<p>
+																	<span>综合评价</span>
+																	<br />
+																	<span>高于周边商家</span>
+																	<span>55.3%</span>
+																</p>
+															</div>
+															<div className="shang_DT_divli2">
+																<p>
+																	<span>服务态度</span>
+																	<Rate disabled={true} value={3.9} showText={true} />
+																</p>
+																<p>
+																	<span>菜品评价</span>
+																	<Rate disabled={true} value={3.9} showText={true} />
+																</p>
+															</div>
+														</li>
+														<li className="shang_DT_tanlist2">{this.state.shopDT.description}</li>
+														<li className="shang_DT_tanlist3">
+															<p>
+																<span>商家地址：</span>
+																<span>{this.state.shopDT.address}</span>
+															</p>
+															<p>
+																<span>营业时间：</span>
+																<span>10:00-21:30</span>
+															</p>
+														</li>
+														<li className="shang_DT_tanlist4">
+															<p>
+																由<span>{this.state.shopDT.name}</span>提供配送服务
+															</p>
+														</li>
+													</ul>
+										</div>
+
+
+
 									</div>
 									<div className="shopguide-server">
 										<span>

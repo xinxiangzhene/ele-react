@@ -21,6 +21,10 @@
                 color: #fff;
                 width:480px;
                 float: left;
+                position: relative;
+                &:hover .shang_DT_tan{
+                    display: block;
+                }
                 img:nth-of-type(1){
                     margin-right:0.15rem;
                     width:0.95rem;
@@ -42,6 +46,85 @@
                       font-size:18px;  
                     }
                 }
+               
+               .shang_DT_tan{
+                    position: absolute;
+                    top:0px;
+                    left: 0px;
+                    background: rgba(255,255,255,.1);
+                    padding-top: 150px;
+                    width: 100%;
+                    max-height:0;
+                    display: none;
+                    box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+                    ul{
+                        padding: 0 20px;
+                        background-color: #fff;
+                        color: #333;
+                        li{
+                            padding: 15px 0;
+                            border-top: 1px dashed #eee;
+                        }
+                        .shang_DT_tanlist1{
+                            padding: 0 20px;
+                            background-color: #fff;
+                            color: #333;
+                            border-top:none;
+                            .shang_DT_divli1{
+                                width:50%;
+                                border-right: 1px solid #eee;
+                                display: table-cell;
+                                text-align: center;
+                                h2{
+                                    font-size: 28px;
+                                    color: #f74342;
+                                    font-weight: 400;
+                                }
+                                p{
+                                    display: block;
+                                    text-align: center;
+                                    span:nth-of-type(3){
+                                        color: #f74342;
+                                    }
+                                }
+                            }
+                            .shang_DT_divli2{
+                                padding: 0 15px;
+                                display: table-cell;
+                                text-align: center;
+                                p{
+                                    line-height: 2;
+                                    text-align: center;
+                                    i{
+                                        font-size:10px;
+                                    }
+                                    div:nth-of-type(1){
+                                        display: inline-block;
+                                        span:nth-of-type(6){
+                                            color: #f74342;
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        } 
+                        .shang_DT_tanlist2{
+                            color: #666;
+                        } 
+                        .shang_DT_tanlist3{
+                          
+                        } 
+                        .shang_DT_tanlist4{
+                            p{
+                                span{
+                                    color: #0089dc;
+                                    margin: 0 5px;
+                                }
+                            }
+                        }  
+                    }
+                }
+               
             }
             .shopguide-server{
                 float: right;
