@@ -20,9 +20,6 @@ class Content extends React.Component {
 			address: '',
 			page: 0,
 			fullscreen: false
-		},
-		this.conT={
-			
 		}
 	}
 
@@ -244,11 +241,14 @@ document.title = '记得回来点单哦！--饿了么';
       <div className = 'list_top'>
       		<span>当前位置:<time>{this.state.address}</time></span>
       		<NavLink to = '/home'><i style ={{color:'#0089dc',fontSize:'0.12rem'}}>[切换地址]</i></NavLink>
-      		<input type = 'search' placeholder="搜索商家,美食..."/>	
+      		<div className="shopcontent_head_right">
+								<input type="text" placeholder="搜索商家,美食..." />
+								<button className="iconfont icon-sousuo"></button>
+							</div>
       </div>
       <div className = 'list_top_logo'>
       	<div>
-      		<img src="https://shadow.elemecdn.com/faas/desktop/media/img/takeout.408a87.png" />
+      		<img alt = '' src="https://shadow.elemecdn.com/faas/desktop/media/img/takeout.408a87.png" />
       	</div>
       </div>
       <div className = 'list_kind'>
@@ -328,7 +328,7 @@ document.title = '记得回来点单哦！--饿了么';
       		}
       	</ul>
        </div>
-       <div className="more_wai"><div className="more" ref ='login'>查看更多商家,请<NavLink to = '/home'>登录</NavLink></div></div>
+       <div className="more_wai"><div className="more" ref ='login'>查看更多商家,请<NavLink to = '/login'>登录</NavLink></div></div>
        
        <Footer />
       </div>

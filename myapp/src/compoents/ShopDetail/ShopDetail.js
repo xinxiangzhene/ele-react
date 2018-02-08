@@ -5,7 +5,7 @@ import "./ShopDetail.scss"
 import Header from "../Header/Header.js"
 import Footer from "../Footer/Footer.js"
 import { Rate} from 'element-react';
-
+import Cart from './Cart.js'
 class Shop extends React.Component {
   constructor(props,context) {
     super(props);
@@ -61,17 +61,34 @@ class Shop extends React.Component {
 	scrollToAnchor(anchorName){
     if (anchorName) {
         let anchorElement = document.getElementById(anchorName);
-        if(anchorElement) { anchorElement.scrollIntoView()}
+        if(anchorElement) { anchorElement.scrollIntoView() }
+  
+       
     }
   }
-	
+	//列表排序
+	liebiao(){
+		$('.shopmin_food').css({width:'90%'})
+		this.refs.liebiao.style.background = '#0089dc'
+		this.refs.liebiao.style.color = '#fff'
+		this.refs.jiugong.style.background = '#fff'
+		this.refs.jiugong.style.color = '#0089dc'
+	}
+	//九宫格排序
+	jiugong(){
+			$('.shopmin_food').css({width:'42.5%'})
+			this.refs.jiugong.style.background = '#0089dc'
+		  this.refs.liebiao.style.background = '#fff'
+		  this.refs.liebiao.style.color = '#0089dc'
+		  this.refs.jiugong.style.color = '#fff'
+	}
   render() {
   		var shop=this.state.shopDT
-  		var shopDT = this.state.shopDTimg
+  		var shopDT = this.state.shopDTimg;
     return (
     	
     	<div className="bigbox">
-    	
+    		<Cart />
 				<Header />
 				
 	    		<div className="shopdetail">
@@ -81,7 +98,8 @@ class Shop extends React.Component {
 										<img alt = ''  src={'http://fuss10.elemecdn.com/'+shopDT+'.'+shopDT.substr(32)+'?imageMogr2/thumbnail/70x70'}/>
 										<div className="shang_DT">
 											<h1>{this.state.shopDT.name}</h1>
-											<p>------({this.state.shopDT.rating_count})</p>
+												<Rate disabled={true} value={this.state.shopDT.rating} showText={true} />
+											<p>({this.state.shopDT.rating_count})</p>
 										</div>
 									
 						
@@ -99,14 +117,14 @@ class Shop extends React.Component {
 																</p>
 															</div>
 															<div className="shang_DT_divli2">
-																<p>
+																<div>
 																	<span>服务态度</span>
 																	<Rate disabled={true} value={3.9} showText={true} />
-																</p>
-																<p>
+																</div>
+																<div>
 																	<span>菜品评价</span>
 																	<Rate disabled={true} value={3.9} showText={true} />
-																</p>
+																</div>
 															</div>
 														</li>
 														<li className="shang_DT_tanlist2">{this.state.shopDT.description}</li>
@@ -166,11 +184,11 @@ class Shop extends React.Component {
 									<li>评分<i className="iconfont icon-paixu"></i></li>
 									<li>销量<i className="iconfont icon-paixu"></i></li>
 									<li>价格<i className="iconfont icon-paixu"></i></li>
-									<li><span className="iconfont icon-msnui-qr-code"></span><span className="iconfont icon-fenlei2"></span></li>
+									<li><span  ref = 'jiugong' onClick = {this.jiugong.bind(this)} className="iconfont icon-msnui-qr-code" ></span><span ref = 'liebiao' onClick = {this.liebiao.bind(this)} className="iconfont icon-fenlei2"></span></li>
 								</ul>
 							</div>
 							<div className="shopcontent_head_right">
-								<input type="tel" placeholder="搜索商家美食" />
+								<input type="text" placeholder="搜索商家美食" />
 								<button className="iconfont icon-sousuo"></button>
 							</div>
 						</div>
@@ -201,7 +219,7 @@ class Shop extends React.Component {
 												{
 													item.foods.map((ite,ind)=>{
 														return (
-														<div key = {ind} className="shopmin_food">
+														<div key = {ind} className="shopmin_food" ref = 'shopmin_food'>
 															<span>
 																<img alt = ''  src={'http://fuss10.elemecdn.com/'+ite.image_path+'.'+ite.image_path.substr(32)+'?imageMogr2/thumbnail/70x70'}/>
 															</span>

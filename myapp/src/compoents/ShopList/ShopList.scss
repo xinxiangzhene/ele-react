@@ -8,7 +8,7 @@ html,body,#app,.container{
      overflow:auto;
    
     .list_top{
-        @include rect(96%,0.6rem);
+        @include rect(96%,0.4rem);
         margin:0.1rem auto;
         padding:0.1rem;
         input{
@@ -20,6 +20,28 @@ html,body,#app,.container{
                 margin:0 0.06rem;
             }
         }
+         .shopcontent_head_right{
+        position: relative;
+        float: right;
+        input{
+            height:30px;
+            text-indent:6px;
+            width:300px;
+            
+        }
+        button{
+            position: absolute;
+            top: 0px;
+            right:15px;
+            border:0;
+            margin-top:4px;
+            background:#fff;
+            font-size:16px;
+            &:hover{
+                color:#0089dc
+            }
+        }
+    }
     }
     .list_top_logo{
         @include rect(96%,0.6rem);

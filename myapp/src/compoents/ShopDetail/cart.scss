@@ -1,0 +1,19 @@
+@import "../../lib/reset.scss";
+#cart{
+    @include rect(320px,auto);
+    @include border(2px 0 0 0,#0089dc);
+    position:fixed;
+    bottom:0;
+    right:10px;
+    
+    z-index:999;
+    header{
+        background:#fafafa;
+        @include rect(320px,40px);
+        @include border(0 0 2px 0,#0089dc);
+    }
+    .product{
+        background:#fff;
+         @include rect(320px,50px);
+    }
+}
