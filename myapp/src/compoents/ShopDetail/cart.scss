@@ -19,13 +19,16 @@
     footer{
         background:#eee;
         @include rect(320px,50px);
+        overflow:hidden;
         .footer_left{
            background-color:#2c2c2c;
             @include rect(60%,100%);
+            float:left;
         }
         .footer_right{
-            @include background-color(#e4e4e4);
+            @include background-color(red);
             @include rect(40%,100%);
+            float:left;
         }
     }
 }

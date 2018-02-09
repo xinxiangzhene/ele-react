@@ -100,7 +100,7 @@ class Shop extends React.Component {
     return (
     	
     	<div className="bigbox" id = 'bigbox'>
-    		<Cart cartlist = {store.getState().todoCart} />
+    		<Cart cartlist = {store.getState().todoCart} qisong = {shop.float_minimum_order_amount} songfei = {this.state.songfei} />
 				<Header />
 				
 	    		<div className="shopdetail">
