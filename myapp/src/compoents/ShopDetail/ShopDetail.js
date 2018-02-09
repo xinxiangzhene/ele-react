@@ -2,6 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import { baseUrl } from "./../../common/base.js"
 import "./ShopDetail.scss"
+import store from './../../redux/store.js'
 import Header from "../Header/Header.js"
 import Footer from "../Footer/Footer.js"
 import { Rate} from 'element-react';
@@ -59,6 +60,11 @@ class Shop extends React.Component {
 	}
 	addCart(data){
 		console.log(data)
+	 store.dispatch({
+      type:"ADD_CART",
+      data: data
+    })
+	
 	}
 	
 	scrollToAnchor(anchorName){
@@ -94,7 +100,7 @@ class Shop extends React.Component {
     return (
     	
     	<div className="bigbox" id = 'bigbox'>
-    		<Cart />
+    		<Cart cartlist = {store.getState().todoCart} />
 				<Header />
 				
 	    		<div className="shopdetail">

@@ -2,6 +2,7 @@
 #cart{
     @include rect(320px,auto);
     @include border(2px 0 0 0,#0089dc);
+    border-bottom:1px solid #e6e6e6;
     position:fixed;
     bottom:0;
     right:10px;
@@ -10,10 +11,21 @@
     header{
         background:#fafafa;
         @include rect(320px,40px);
-        @include border(0 0 2px 0,#0089dc);
     }
     .product{
         background:#fff;
-         @include rect(320px,50px);
+        @include rect(320px,auto);
+    }
+    footer{
+        background:#eee;
+        @include rect(320px,50px);
+        .footer_left{
+           background-color:#2c2c2c;
+            @include rect(60%,100%);
+        }
+        .footer_right{
+            @include background-color(#e4e4e4);
+            @include rect(40%,100%);
+        }
     }
 }

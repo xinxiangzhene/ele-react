@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import FastClick from 'fastclick'
 import Es6Promise from 'es6-promise'
-
+import store from './redux/store.js'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 
 import App from './App.js'
@@ -27,7 +27,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-
+function test(){
 ReactDOM.render(<ErrorBoundary>
   	<Router>
     <Switch>
@@ -35,3 +35,6 @@ ReactDOM.render(<ErrorBoundary>
     </Switch>
   	</Router>
 </ErrorBoundary>, document.getElementById("app"));
+}
+test();
+store.subscribe(test)

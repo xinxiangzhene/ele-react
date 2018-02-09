@@ -113,7 +113,9 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 		this.refs.city.style.display = 'none'
 		this.refs.adrList.style.display = 'none'
 	}
-    
+    go(){
+		this.props.history.push('./login')
+    }
 	render() {
 		return(
 			<div style={{overflow:"auto",width:"100%",height:"100%",position:"relative"}}>
@@ -129,7 +131,7 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 							<NavLink to = '/login'>注册</NavLink>
 							<span>|</span>
 							<NavLink to = '/login'>登录</NavLink>
-							<a>我要开店</a>
+							<a onClick = {this.go.bind(this)}>我要开店</a>
 						</span>
 					</div>
 					<div className='home_main'>
