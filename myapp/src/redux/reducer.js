@@ -7,7 +7,7 @@ const todoCart = (state = [], action) => {
   	   return [...state,data];
   		// break;
 	  case "DEL_CART":
-	   state.splice(data,1);
+	   return []
 	   return state
       //break; 
    	default:

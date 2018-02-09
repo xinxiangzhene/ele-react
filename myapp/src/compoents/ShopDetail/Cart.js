@@ -1,7 +1,8 @@
 import React from 'react'
 import './cart.scss'
 //import $ from 'jquery'
-import {InputNumber} from 'element-react'
+import store from './../../redux/store.js'
+import {InputNumber,Badge} from 'element-react'
 export default class Cart extends React.Component {
 constructor(props,context) {
     super(props);
@@ -18,6 +19,14 @@ onChange(value) {
 	this.setState({
 		parice:danjia
 	})
+}
+clear(){
+	store.dispatch({
+      type:"DEL_CART",
+      data: ''
+    })
+	this.refs.footer_right.innerHTML = `购物车是空的`;
+     	this.refs.footer_right.style.background = '#e4e4e4';
 }
   render(){
   var arr = []
@@ -36,22 +45,27 @@ onChange(value) {
     if(parices>0){
      if(parices>=this.props.qisong){
      	console.log('11111')
-     	this.refs.footer_right.innerHTML = `去结算>`
+     	this.refs.footer_right.style.background = '#51d862';
+     		this.refs.footer_right.style.color = '#fff';
+     	this.refs.footer_right.innerHTML = `去结算&nbsp;>`
      }else if(parices<this.props.qisong){
      	this.refs.footer_right.innerHTML = `还差${this.props.qisong-parices}起送`
+     	this.refs.footer_right.style.background = '#e4e4e4';
      }}
+    var length = this.props.cartlist.length;
   	return(
   		<div id = 'cart'>
-  			<header>购物车<a>[清空]</a></header>
+  			<header>购物车<a onClick = {this.clear.bind(this)} style = {{color:'#0089dc'}}>&nbsp;[清空]</a></header>
   			<div className = 'product'>
   				<ul>
   					{arr}
   				</ul>
   			</div>
-  			<footer>
+  			<footer> 
+     
   			<div  style = {{color:'#fff'}} className = 'footer_left'>
-  				<time>¥{parices}</time>
-  				&nbsp;{this.props.songfei}
+  				<Badge  className="mark" value={ length }><span style = {{fontSize:'0.14rem'}} className = 'iconfont icon-gouwuche'></span></Badge>&nbsp;&nbsp;&nbsp;¥<time style = {{fontSize:'0.22rem'}}>{parices}</time>
+  				&nbsp;<span style = {{fontSize:'12px',color:'#999',margin:'0.2rem'}}>|&nbsp;&nbsp;{this.props.songfei}</span>
   			</div>
   			<div  style = {{color:'#000'}} ref = 'footer_right' className = 'footer_right'>
   				购物车是空的

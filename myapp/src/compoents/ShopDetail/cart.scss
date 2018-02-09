@@ -10,11 +10,13 @@
     z-index:999;
     header{
         background:#fafafa;
-        @include rect(320px,40px);
+        @include rect(320px,30px);
+        padding:0.1rem;
     }
     .product{
         background:#fff;
         @include rect(320px,auto);
+          padding:0.1rem;
     }
     footer{
         background:#eee;
@@ -24,11 +26,17 @@
            background-color:#2c2c2c;
             @include rect(60%,100%);
             float:left;
+             padding-left:0.1rem;
+             padding-top:0.12rem;
         }
         .footer_right{
-            @include background-color(red);
             @include rect(40%,100%);
             float:left;
+            font-size:0.16rem;
+            text-align:center;
+            line-height:50px;
+            
         }
     }
+ 
 }
