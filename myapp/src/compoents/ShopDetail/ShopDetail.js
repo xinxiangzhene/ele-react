@@ -102,7 +102,12 @@ class Shop extends React.Component {
 	
 	//传递去结算路由跳转方法给子组件Cart
 	toBuy(){
-		this.props.history.push('/login')
+		
+		if(sessionStorage.getItem('user'){
+			this.props.history.push('/CartList')
+		}else{
+			this.props.history.push('/login')
+		})
 	}
 	
   render() {

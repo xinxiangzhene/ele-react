@@ -86,7 +86,7 @@ class Content extends React.Component {
 			}
 		})
 		var page = 1;
-		if(localStorage.getItem('user')){
+		if(sessionStorage.getItem('user')){
 				more()
 			this.refs.login.style.display = 'none'
 		}else{

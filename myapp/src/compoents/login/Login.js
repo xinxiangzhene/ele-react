@@ -5,6 +5,12 @@ class Login extends React.Component{
 //			super(props)
 //			
 //	}
+login(){
+	console.log(this.refs.tel.value,this.refs.password.value)
+	sessionStorage.setItem('user',this.refs.tel.value);
+	
+	window.history.go(-1)
+}
 	render(){
 		return(
 			<div className="loginbox">
@@ -21,13 +27,13 @@ class Login extends React.Component{
 					</div>
 					<div className="logininput">
 						<div className="logininput1">
-							<input className="login_input1" type="tel" placeholder="手机号" />
+							<input ref = 'tel' className="login_input1" type="tel" placeholder="手机号" />
 							<button className="CountButton">获取验证码</button>
 						</div>
 						<div className="logininput2">
-							<input className="login_input2" type="tel" placeholder="验证码" />
+							<input ref = 'password' className="login_input2" type="tel" placeholder="验证码" />
 						</div>
-						<button className="loginbtn">登录</button>
+						<button onClick = {this.login.bind(this)} className="loginbtn">登录</button>
 					</div>
 				</div>
 				<div className="loginfooter">
