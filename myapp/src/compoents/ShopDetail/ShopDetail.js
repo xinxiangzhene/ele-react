@@ -16,8 +16,10 @@ class Shop extends React.Component {
     	shopDTimg:'',
     	songfei:''
     }
+   this.toBuy=this.toBuy.bind(this)
   }
 	componentDidMount(){
+		 
 		var id = this.props.match.params.id;
 		var that = this;
 			//店铺详情信息
@@ -44,6 +46,8 @@ class Shop extends React.Component {
 				})
 			}
 		})
+			
+	//滚动把商品分类列表定位在最上面
 		$(".bigbox").on("scroll", function() {
 			var $scrollTop = $(".bigbox").scrollTop();
 				if($scrollTop>200){
@@ -58,20 +62,21 @@ class Shop extends React.Component {
 			$('.shopmen_nav').find('li').eq(0).addClass('active')
 		},1000)
 	}
+	
+	//加入购物车
 	addCart(data){
-		console.log(data)
 	 store.dispatch({
       type:"ADD_CART",
       data: data
-    })
-	
+   })
 	}
 	
+	
+	//点击滚动到相对应的食物分类
 	scrollToAnchor(anchorName){
 		$('.shopmen_nav').find('li').eq(anchorName-1).addClass('active').siblings().removeClass('active')
     if (anchorName) {
         let anchorElement = document.getElementById(anchorName);
-        	console.log(anchorElement.offsetTop)
         	$(".bigbox").animate({
                 scrollTop: anchorElement.offsetTop-160
             }, 400);
@@ -94,13 +99,19 @@ class Shop extends React.Component {
 		  this.refs.liebiao.style.color = '#0089dc'
 		  this.refs.jiugong.style.color = '#fff'
 	}
+	
+	//传递去结算路由跳转方法给子组件Cart
+	toBuy(){
+		this.props.history.push('/login')
+	}
+	
   render() {
   		var shop=this.state.shopDT
   		var shopDT = this.state.shopDTimg;
     return (
     	
     	<div className="bigbox" id = 'bigbox'>
-    		<Cart cartlist = {store.getState().todoCart} qisong = {shop.float_minimum_order_amount} songfei = {this.state.songfei} />
+    		<Cart toBuy={this.toBuy}  cartlist = {store.getState().todoCart} qisong = {shop.float_minimum_order_amount} songfei = {this.state.songfei} />
 				<Header />
 				
 	    		<div className="shopdetail">
