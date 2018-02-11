@@ -10,28 +10,61 @@
     z-index:999;
     header{
         background:#fafafa;
-        @include rect(320px,30px);
-        padding:0.1rem;
+        @include rect(320px,40px);
+        line-height: 40px;
+         @include border(0 0 1px 0,#eee);
+         padding-left: 0.1rem;
+         font-size: 17px;
+         a{
+             font-size: 14px;
+         }
     }
     .product{
         background:#fff;
         @include rect(320px,auto);
-          padding:0.1rem;
+          padding:0 0.1rem;
+             ul{
+            @include rect(100%,100%);
+            li{
+                @include rect(100%,40px);
+                @include border(0 0 1px 0,#eee);
+                padding-top: 0.07rem;
+                overflow: hidden;
+                #name{
+                
+                    @include rect(150px,100%);
+                        display: block;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                        white-space: nowrap;
+                        text-overflow:ellipsis;
+                        overflow: hidden;
+                        float: left;
+                }
+                .price{
+                    float:right;
+                    color:red;
+                   
+                }
+            }
+        }
     }
     footer{
         background:#eee;
-        @include rect(320px,50px);
+        @include rect(340px,50px);
         overflow:hidden;
         .footer_left{
            background-color:#2c2c2c;
-            @include rect(60%,100%);
+            @include rect(65%,100%);
             float:left;
              padding-left:0.1rem;
              padding-top:0.12rem;
         }
         .footer_right{
-            @include rect(40%,100%);
+            @include rect(35%,100%);
             float:left;
+            background:#e4e4e4;
+            color:#000;
             font-size:0.16rem;
             text-align:center;
             line-height:50px;

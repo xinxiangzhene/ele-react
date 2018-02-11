@@ -73,9 +73,11 @@ zhifu(){
   var parices = 0;
     this.props.cartlist.map((item, index) => {
       arr.push(<li key = {index}>
-      	<span>{item.name}</span>
-   		<button onClick = {this.jian.bind(this,index)}>-</button><input style={{width:'30px',textAlign:'center'}}  readOnly="readOnly" value = {item.num} type = 'text' /><button onClick = {this.add.bind(this,index)}>+</button>
-		¥<time>{item.price}</time>
+      	<span id = 'name'>{item.name}</span>
+   		<button onClick = {this.jian.bind(this,index)}>-</button>
+   		<input style={{width:'30px',textAlign:'center'}}  readOnly="readOnly" value = {item.num} type = 'text' />
+   		<button onClick = {this.add.bind(this,index)}>+</button>
+		<b className = 'price'>¥{item.price.toFixed(2)}</b>
        </li>)
       parices+=item.price;
     
@@ -86,6 +88,7 @@ zhifu(){
      	this.refs.footer_right.style.color = '#fff';
      	this.refs.footer_right.innerHTML = `去结算&nbsp;>`
      }else if(parices<this.props.qisong){
+     	this.refs.footer_right.style.color = '#000';
      	this.refs.footer_right.innerHTML = `还差${this.props.qisong-parices}起送`
      	this.refs.footer_right.style.background = '#e4e4e4';
      
@@ -101,8 +104,8 @@ zhifu(){
   			</div>
   			<footer>
   			<div  style = {{color:'#fff'}} className = 'footer_left'>
-  				<Badge  className="mark" value={ length }><span style = {{fontSize:'0.14rem'}} className = 'iconfont icon-gouwuche'></span></Badge>&nbsp;&nbsp;&nbsp;¥<time id = 'parice' ref = 'parice' style = {{fontSize:'0.22rem'}}>{parices}</time>
-  				&nbsp;<span style = {{fontSize:'12px',color:'#999',margin:'0.2rem'}}>|&nbsp;&nbsp;{this.props.songfei}</span>
+  				<Badge className="mark" value={ length }><i style = {{fontSize:'0.14rem'}} className = 'iconfont icon-gouwuche'></i></Badge>&nbsp;&nbsp;&nbsp;&nbsp;<time id = 'parice' ref = 'parice' style = {{fontSize:'0.22rem'}}>¥{parices.toFixed(2)}</time>
+  		<span style = {{fontSize:'12px',color:'#999',marginLeft:'0.1rem'}}>|&nbsp;{this.props.songfei}</span>
   			</div>
   			<div onClick = {this.zhifu.bind(this)} style = {{color:'#000'}} ref = 'footer_right' className = 'footer_right'>
   				购物车是空的
