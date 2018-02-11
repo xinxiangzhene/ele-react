@@ -20,6 +20,7 @@ class Shop extends React.Component {
   }
 	componentDidMount(){
 		 
+  	console.log(this)
 		var id = this.props.match.params.id;
 		var that = this;
 			//店铺详情信息
@@ -41,6 +42,7 @@ class Shop extends React.Component {
 			dataType:'json',
 			data:{id:id},
 			success:(data)=>{
+				console.log(data)
 				this.setState({
 					detail:data
 				})
@@ -65,10 +67,32 @@ class Shop extends React.Component {
 	
 	//加入购物车
 	addCart(data){
-	 store.dispatch({
-      type:"ADD_CART",
-      data: data
-   })
+		var arr = store.getState().todoCart;
+		var obj = {
+			name:data.name,
+			price:data.specfoods[0].price,
+			num:1,
+			id:data.virtual_food_id
+		}
+		if(arr.length===0){
+					arr.push(obj)
+				}else{
+					var isHas = false;
+					arr.map((item,i)=>{
+						if(item.id === obj.id){
+							item.num++;
+							item.price = obj.price*item.num;
+							isHas = true;
+						}
+					})
+				}
+				if(isHas===false){
+					arr.push(obj)
+				}
+				store.dispatch({
+					type:'ADD_CART',
+					data:arr
+				})
 	}
 	
 	
@@ -103,13 +127,12 @@ class Shop extends React.Component {
 	//传递去结算路由跳转方法给子组件Cart
 	toBuy(){
 		
-		if(sessionStorage.getItem('user'){
+		if(sessionStorage.getItem('user')){
 			this.props.history.push('/CartList')
 		}else{
 			this.props.history.push('/login')
-		})
+		}
 	}
-	
   render() {
   		var shop=this.state.shopDT
   		var shopDT = this.state.shopDTimg;

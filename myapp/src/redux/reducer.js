@@ -4,7 +4,7 @@ const todoCart = (state = [], action) => {
   const { type, data} = action;
   switch (type){
   	case "ADD_CART":
-  	   return [...state,data];
+  	   return data;
   		// break;
 	  case "DEL_CART":
 	   return []

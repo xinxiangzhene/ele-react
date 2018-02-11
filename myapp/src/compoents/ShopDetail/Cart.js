@@ -2,7 +2,7 @@ import React from 'react'
 import './cart.scss'
 import $ from 'jquery'
 import store from './../../redux/store.js'
-import {InputNumber,Badge} from 'element-react'
+import {Badge} from 'element-react'
 export default class Cart extends React.Component {
 constructor(props,context) {
     super(props);
@@ -18,14 +18,34 @@ componentDidMount(){
 	
 }
 
-onChange(value) {
-	console.log(value)
-	var danjia = this.state.parice;
-		danjia+=value
-	this.setState({
-		parice:danjia
+//购物车加
+add(i){
+	console.log(i)
+	var arr = store.getState().todoCart;
+	arr[i].price = arr[i].price+arr[i].price/arr[i].num;
+	arr[i].num++;
+	console.log(arr)
+	store.dispatch({
+		type:'ADD_CART',
+		data:arr
 	})
 }
+//购物车加
+jian(i){
+	var arr = store.getState().todoCart;
+	arr[i].price = arr[i].price-arr[i].price/arr[i].num;
+	arr[i].num--;
+	if(arr[i].num===0){
+		arr.splice(i,1)
+	}
+	console.log(arr)
+	store.dispatch({
+		type:'ADD_CART',
+		data:arr
+	})
+}
+
+//清空购物车
 clear(){
 	store.dispatch({
       type:"DEL_CART",
@@ -38,9 +58,9 @@ clear(){
     	zhifu:false
     })
 }
+//点击结算按钮
 zhifu(){
 	if(this.refs.parice.innerHTML>=this.props.qisong){
-		console.log(0)
 		this.props.toBuy()
 	}else{
 		console.log(1)
@@ -49,16 +69,16 @@ zhifu(){
 }
 
   render(){
-  	console.log(this)
+  console.log(store.getState().todoCart)
   var arr = []
   var parice = 0;
     this.props.cartlist.map((item, index) => {
       arr.push(<li key = {index}>
       	<span>{item.name}</span>
-   		<InputNumber size="small" defaultValue={1} onChange={this.onChange.bind(this,item.specfoods[0].price)} min="0" max="10"></InputNumber>
-		¥<time>{item.specfoods[0].price}</time>
+   		<button onClick = {this.jian.bind(this,index)}>-</button><input style={{width:'30px',textAlign:'center'}}  readOnly="readOnly" value = {item.num} type = 'text' /><button onClick = {this.add.bind(this,index)}>+</button>
+		¥<time>{item.price}</time>
        </li>)
-      parice+=item.specfoods[0].price;
+      parice+=item.price;
     
     })
    
