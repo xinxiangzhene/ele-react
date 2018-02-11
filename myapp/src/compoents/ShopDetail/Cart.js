@@ -8,7 +8,6 @@ constructor(props,context) {
     super(props);
     this.state = {
     	cartlist:[],
-    	parice:0,
     	zhufu:false
     }
     
@@ -24,7 +23,6 @@ add(i){
 	var arr = store.getState().todoCart;
 	arr[i].price = arr[i].price+arr[i].price/arr[i].num;
 	arr[i].num++;
-	console.log(arr)
 	store.dispatch({
 		type:'ADD_CART',
 		data:arr
@@ -38,7 +36,9 @@ jian(i){
 	if(arr[i].num===0){
 		arr.splice(i,1)
 	}
-	console.log(arr)
+	if(arr.length===0){
+     	this.refs.footer_right.innerHTML = `购物车是空的`
+	}
 	store.dispatch({
 		type:'ADD_CART',
 		data:arr
@@ -69,20 +69,17 @@ zhifu(){
 }
 
   render(){
-  console.log(store.getState().todoCart)
   var arr = []
-  var parice = 0;
+  var parices = 0;
     this.props.cartlist.map((item, index) => {
       arr.push(<li key = {index}>
       	<span>{item.name}</span>
    		<button onClick = {this.jian.bind(this,index)}>-</button><input style={{width:'30px',textAlign:'center'}}  readOnly="readOnly" value = {item.num} type = 'text' /><button onClick = {this.add.bind(this,index)}>+</button>
 		¥<time>{item.price}</time>
        </li>)
-      parice+=item.price;
+      parices+=item.price;
     
     })
-   
-    var parices = parice + this.state.parice;
     if(parices>0){
      if(parices>=this.props.qisong){
      	this.refs.footer_right.style.background = '#51d862';
@@ -102,8 +99,7 @@ zhifu(){
   					{arr}
   				</ul>
   			</div>
-  			<footer> 
-     
+  			<footer>
   			<div  style = {{color:'#fff'}} className = 'footer_left'>
   				<Badge  className="mark" value={ length }><span style = {{fontSize:'0.14rem'}} className = 'iconfont icon-gouwuche'></span></Badge>&nbsp;&nbsp;&nbsp;¥<time id = 'parice' ref = 'parice' style = {{fontSize:'0.22rem'}}>{parices}</time>
   				&nbsp;<span style = {{fontSize:'12px',color:'#999',margin:'0.2rem'}}>|&nbsp;&nbsp;{this.props.songfei}</span>
