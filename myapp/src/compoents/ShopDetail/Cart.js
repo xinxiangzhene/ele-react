@@ -14,7 +14,37 @@ constructor(props,context) {
 }
 
 componentDidMount(){
+	setTimeout(()=>{
+		$('.add-to-cart').on('click', function () {
+	var cart = $('#carts');
+	var imgtodrag = $(this).parent().parent().find('img').eq(0);
+	if (imgtodrag) {
+		var imgclone = imgtodrag.clone().offset({
+			top: imgtodrag.offset().top,
+			left: imgtodrag.offset().left
+		}).css({
+			'opacity': '0.5',
+			'position': 'absolute',
+			'height': '100px',
+			'width': '100px',
+			'z-index': '99999',
+			'border-radius':'50%'
+		}).appendTo($('body')).animate({
+			'top': cart.offset().top + 10,
+			'left': cart.offset().left + 10,
+			'width': 40,
+			'height': 40
+		}, 1300);
 	
+		imgclone.animate({
+			'width': 0,
+			'height': 0
+		}, function () {
+			$(this).detach();
+		});
+	}
+});
+	},1000)
 }
 
 //购物车加
@@ -96,7 +126,7 @@ zhifu(){
     var length = this.props.cartlist.length;
   	return(
   		<div id = 'cart'>
-  			<header>购物车<a onClick = {this.clear.bind(this)} style = {{color:'#0089dc'}}>&nbsp;[清空]</a></header>
+  			<header >购物车<a onClick = {this.clear.bind(this)} style = {{color:'#0089dc'}}>&nbsp;[清空]</a></header>
   			<div className = 'product'>
   				<ul>
   					{arr}
@@ -104,7 +134,7 @@ zhifu(){
   			</div>
   			<footer>
   			<div  style = {{color:'#fff'}} className = 'footer_left'>
-  				<Badge className="mark" value={ length }><i style = {{fontSize:'0.14rem'}} className = 'iconfont icon-gouwuche'></i></Badge>&nbsp;&nbsp;&nbsp;&nbsp;<time id = 'parice' ref = 'parice' style = {{fontSize:'0.22rem'}}>¥{parices.toFixed(2)}</time>
+  				<Badge className="mark" value={ length }><i id = 'carts' style = {{fontSize:'0.14rem'}} className = 'iconfont icon-gouwuche'></i></Badge>&nbsp;&nbsp;&nbsp;&nbsp;<time id = 'parice' ref = 'parice' style = {{fontSize:'0.22rem'}}>¥{parices.toFixed(2)}</time>
   		<span style = {{fontSize:'12px',color:'#999',marginLeft:'0.1rem'}}>|&nbsp;{this.props.songfei}</span>
   			</div>
   			<div onClick = {this.zhifu.bind(this)} style = {{color:'#000'}} ref = 'footer_right' className = 'footer_right'>

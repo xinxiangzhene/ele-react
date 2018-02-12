@@ -287,7 +287,7 @@ class Shop extends React.Component {
 																}*/}
 															</div>
 															<div className="shopmin_food_btn">
-																<button onClick = {this.addCart.bind(this,ite)}>加入购入车</button>
+																<button className = 'add-to-cart' onClick = {this.addCart.bind(this,ite)}>加入购物车</button>
 															</div>
 														</div>
 														)
