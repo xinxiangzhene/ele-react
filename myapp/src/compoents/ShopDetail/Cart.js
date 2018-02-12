@@ -36,8 +36,8 @@ componentDidMount(){
 			'height': 40
 		}, 1500);
 		imgclone.animate({
-			'width': 0,
-			'height': 0
+			'width': 10,
+			'height': 10
 		}, function () {
 			$(this).detach();
 		});

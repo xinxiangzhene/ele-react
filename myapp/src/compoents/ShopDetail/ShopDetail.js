@@ -89,10 +89,12 @@ class Shop extends React.Component {
 				if(isHas===false){
 					arr.push(obj)
 				}
-				store.dispatch({
+				setTimeout(()=>{
+					store.dispatch({
 					type:'ADD_CART',
 					data:arr
 				})
+				},1700)
 	}
 	
 	
