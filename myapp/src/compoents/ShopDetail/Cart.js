@@ -17,11 +17,11 @@ componentDidMount(){
 	setTimeout(()=>{
 		$('.add-to-cart').on('click', function () {
 	var cart = $('#carts');
-	var imgtodrag = $(this).parent().parent().find('img').eq(0);
-	if (imgtodrag) {
-		var imgclone = imgtodrag.clone().offset({
-			top: imgtodrag.offset().top,
-			left: imgtodrag.offset().left
+	var img = $(this).parent().parent().find('img').eq(0);
+	if (img) {
+		var imgclone = img.clone().offset({
+			top: img.offset().top,
+			left: img.offset().left
 		}).css({
 			'opacity': '0.5',
 			'position': 'absolute',
@@ -34,8 +34,7 @@ componentDidMount(){
 			'left': cart.offset().left + 10,
 			'width': 40,
 			'height': 40
-		}, 1300);
-	
+		}, 1500);
 		imgclone.animate({
 			'width': 0,
 			'height': 0
