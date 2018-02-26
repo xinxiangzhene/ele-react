@@ -44,6 +44,7 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 						longitude:data.content.point.y,
 						name:data.address.split('|')[2]
 						}
+                
                 this.setState({
                 city:obj,
                 name:data.address.split('|')[2]
@@ -80,6 +81,7 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 			this.refs.box.style.display = 'none'
 			this.refs.adrList.style.display = 'none'
 		}
+		sessionStorage.setItem('geohash',this.state.geohash)
 		$.ajax({
 			url: baseUrl + 'list',
 			dataType: 'json',

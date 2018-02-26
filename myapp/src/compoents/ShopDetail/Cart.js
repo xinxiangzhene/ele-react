@@ -89,10 +89,15 @@ clear(){
 }
 //点击结算按钮
 zhifu(){
+	console.log(this.refs.parice.innerHTML,this.props.qisong)
 	if(this.refs.parice.innerHTML>=this.props.qisong){
+		var arr = store.getState().todoCart
+		localStorage.setItem('proList',JSON.stringify(arr))
 		this.props.toBuy()
+		
 	}else{
 		console.log(1)
+		
 	}
 			
 }
@@ -133,7 +138,7 @@ zhifu(){
   			</div>
   			<footer>
   			<div  style = {{color:'#fff'}} className = 'footer_left'>
-  				<Badge className="mark" value={ length }><i id = 'carts' style = {{fontSize:'0.14rem'}} className = 'iconfont icon-gouwuche'></i></Badge>&nbsp;&nbsp;&nbsp;&nbsp;<time id = 'parice' ref = 'parice' style = {{fontSize:'0.22rem'}}>¥{parices.toFixed(2)}</time>
+  				<Badge className="mark" value={ length }><i id = 'carts' style = {{fontSize:'0.14rem'}} className = 'iconfont icon-gouwuche'></i></Badge>&nbsp;&nbsp;&nbsp;&nbsp;¥<time id = 'parice' ref = 'parice' style = {{fontSize:'0.22rem'}}>{parices.toFixed(2)}</time>
   		<span style = {{fontSize:'12px',color:'#999',marginLeft:'0.1rem'}}>|&nbsp;{this.props.songfei}</span>
   			</div>
   			<div onClick = {this.zhifu.bind(this)} style = {{color:'#000'}} ref = 'footer_right' className = 'footer_right'>
