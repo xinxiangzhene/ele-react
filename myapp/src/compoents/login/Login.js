@@ -1,16 +1,134 @@
 import React from 'react'
 import './Login.scss'
+import $ from 'jquery'
+
+
+
 class Login extends React.Component{
-//	constructor(props){
-//			super(props)
-//			
-//	}
-login(){
-	console.log(this.refs.tel.value,this.refs.password.value)
-	sessionStorage.setItem('user',this.refs.tel.value);
+	constructor(props){
+		super(props)
+		this.state = {
+        	current: 0,
+        	mag:"获取验证码",
+        	codeState:false,
+        	yanzhengma:''
+        };
+	};
 	
-	window.history.go(-1)
-}
+	componentDidMount(){
+		this.refs.logininput2.style.display = 'none';
+	}
+	//获取验证码
+	butt(){
+		
+		var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+		
+		var that = this;
+		var a=30;
+		
+		if(myreg.test(this.refs.tel1.value)==true){
+			clearInterval(this.timer);
+			this.timer=setInterval(()=>{
+				if(a==0){
+					a=30;
+					this.setState({
+						mag: "发送验证码"
+					});
+					this.codeState=false;
+					clearInterval(that.timer);
+				}else{
+					this.setState({
+						mag:a+"s后重新发送"
+					});
+					this.codeState=true;
+				}
+				a--
+			},1000)
+			
+			var haoma=this.refs.tel1.value;
+			console.log(haoma)
+			$.ajax({
+				type:"get",
+				url:"http://localhost:3000/yanzheng",
+				data:{user:haoma},
+				success:function(data){
+					console.log(data)
+					this.setState({
+						yanzhengma:data
+					})
+				}
+			});
+		}else{
+			alert("手机号格式不对")
+		}
+	}
+	login1(){
+		var that=this;
+		var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+		if(myreg.test(this.refs.tel1.value)==true){
+			$.ajax({
+				type:"get",
+				url:"http://localhost:3000/newlogon",
+				data:{user:this.refs.tel1.value,code:this.refs.password1.value},
+				success:function(data){
+					console.log(data)
+					sessionStorage.setItem('user',that.refs.tel1.value);
+					if(data==0){
+						that.props.history.push('./home')
+					}else if(data==1){
+						that.props.history.push('./home')
+					}else{
+						alert("请填写正确的验证码")
+					}
+				}
+			});
+		}else{
+			alert("请填写合法的手机号")
+		}
+	}
+	
+	login2(){
+		console.log(this.refs.tel2.value,this.refs.password2.value)
+		var that=this;
+		var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+		if(myreg.test(this.refs.tel2.value)==true){
+			$.ajax({
+				type:"get",
+				url:"http://localhost:3000/denglu",
+				data:{user:this.refs.tel2.value,code:this.refs.password2.value},
+				success:function(data){
+					console.log(data)
+					sessionStorage.setItem('user',that.refs.tel2.value);
+					if(data==0){
+						that.props.history.push('./home')
+					}else if(data==1){
+						that.props.history.push('./home')
+					}
+				}
+			});
+		}else{
+			alert("请填写合法的手机号")
+		}
+		
+		
+		
+	}
+	duanxin(){
+		this.refs.logininput.style.display = 'block';
+		this.refs.logininput2.style.display = 'none';
+		
+		this.refs.logininput.style.fontWeight='600';
+		this.refs.loginhead_span1.style.color='#2395ff';
+		this.refs.loginhead_span2.style.color='#333';
+	}
+	mima(){
+		this.refs.logininput.style.display = 'none';
+		this.refs.logininput2.style.display = 'block';
+		
+		this.refs.logininput2.style.fontWeight='600';
+		this.refs.loginhead_span2.style.color='#2395ff';
+		this.refs.loginhead_span1.style.color='#333';
+	}
 	render(){
 		return(
 			<div className="loginbox">
@@ -20,22 +138,36 @@ login(){
 						<div className="loginlogo">
 							<img alt = ''  src="http://cangdu.org:8001/img/16163bcbb334272.png"/>
 						</div>
+						
 						<div className="loginhead">
-							<span>短信登录</span>
-							<span>密码登录</span>
+							<span ref="loginhead_span1" onClick={this.duanxin.bind(this)}>短信登录</span>
+							<span ref="loginhead_span2" onClick={this.mima.bind(this)}>密码登录</span>
 						</div>
 					</div>
-					<div className="logininput">
+					
+					<div className="logininput" ref="logininput">
 						<div className="logininput1">
-							<input ref = 'tel' className="login_input1" type="tel" placeholder="手机号" />
-							<button className="CountButton">获取验证码</button>
+							<input ref = 'tel1' className="login_input1" type="tel" placeholder="手机号" />
+							<button onClick={this.butt.bind(this)} ref="CountButton" className="CountButton">{this.state.mag}</button>
 						</div>
 						<div className="logininput2">
-							<input ref = 'password' className="login_input2" type="tel" placeholder="验证码" />
+							<input ref = 'password1' className="login_input2" type="tel" placeholder="验证码" />
 						</div>
-						<button onClick = {this.login.bind(this)} className="loginbtn">登录</button>
+						<button onClick = {this.login1.bind(this)} ref='loginbtn' className="loginbtn">登录</button>
 					</div>
+					
+					<div className="logininput20" ref="logininput2">
+						<div className="logininput21">
+							<input ref = 'tel2' className="login_input21" type="tel" placeholder="手机号/邮箱" />
+						</div>
+						<div className="logininput22">
+							<input ref = 'password2' className="login_input22" type="tel" placeholder="密码" />
+						</div>
+						<button onClick = {this.login2.bind(this)} ref='loginbtn2' className="loginbtn2">登录</button>
+					</div>
+					
 				</div>
+				
 				<div className="loginfooter">
 					<div className="loginfooter_div">
 						<h2>所有方：上海拉扎斯信息科技有限公司</h2>

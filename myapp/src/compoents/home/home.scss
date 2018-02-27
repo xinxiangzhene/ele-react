@@ -21,16 +21,18 @@
             .home_header_right{
                 @include float(right);
                 word-spacing: .4em;
-                a:nth-of-type(1){
-                    color: inherit;
-                    @include margin-right(0.1rem);
+                .home_header_right_span{
+                    a:nth-of-type(1){
+                        color: inherit;
+                        @include margin-right(0.1rem);
+                    }
+                    a:nth-of-type(2){
+                        color: inherit;
+                        @include margin-right(0.1rem);
+                        @include margin-left(0.1rem);
+                    }
                 }
-                a:nth-of-type(2){
-                    color: inherit;
-                    @include margin-right(0.1rem);
-                    @include margin-left(0.1rem);
-                }
-                a:nth-of-type(3){
+                .home_header_right_a{
                     color: inherit;
                     @include border-radius(0.03rem);
                     @include padding(0.07rem 0.14rem 0.07rem 0.14rem);
