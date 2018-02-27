@@ -65,7 +65,7 @@ router.get("/denglu",(req,res)=>{
 	console.log(str)
 	mongodb.connect(db_str,(err,sjk)=>{
 		sjk.collection("logon",(err,coll)=>{
-			coll.find({user:str.user}).toArray((err,result)=>{
+			coll.find({user:str.user,code:str.pass}).toArray((err,result)=>{
 				
 				if(result.length>0){
 					res.send('0')
