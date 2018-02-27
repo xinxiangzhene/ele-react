@@ -13,11 +13,30 @@ class Home extends React.Component {
 			address: [],
 			listIndex: [],
 			city:'',
-			name:''
+			name:'',
+			user:''
 		}
 	}
 
 	componentDidMount() {
+		
+		setTimeout(function(){
+			if(sessionStorage.getItem('user')){
+				$('.home_header_right_span').hide()
+				$('.home_header_right_spanfirst').show()
+			}else{
+				$('.home_header_right_span').show()
+				$('.home_header_right_spanfirst').hide()
+			}
+		},300)
+		var that=this
+//		var msg=sessionStorage.getItem('user',that.user)
+//		var str= msg.substr(0,3)+"****"+msg.substr(7);
+//		this.setState({
+//			user:str
+//		})
+		
+		
 		this.refs.city.style.display = 'none'
 		this.refs.box.style.display = 'none'
 		var arr = []
@@ -128,10 +147,17 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
 							</a>
 						</h1>
 						<span className='home_header_right'>
-							<NavLink to = '/login'>注册</NavLink>
-							<span>|</span>
-							<NavLink to = '/login'>登录</NavLink>
-							<a onClick = {this.go.bind(this)}>我要开店</a>
+						
+								<span className='home_header_right_spanfirst'>{this.state.user}</span>
+								
+								<span ref="home_header_right_span" className='home_header_right_span'>
+									<NavLink to = '/login'>注册</NavLink>
+									<span>|</span>
+									<NavLink to = '/login'>登录</NavLink>
+								</span>
+								
+								
+							<a className='home_header_right_a' onClick = {this.go.bind(this)}>我要开店</a>
 						</span>
 					</div>
 					<div className='home_main'>
