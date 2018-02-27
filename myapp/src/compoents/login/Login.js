@@ -107,7 +107,7 @@ class Login extends React.Component{
 				}
 			});
 		}else{
-			alert("请填写合S法的手机号")
+			alert("请填写合法的手机号")
 		}
 		
 		

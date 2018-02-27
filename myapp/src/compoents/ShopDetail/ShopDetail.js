@@ -106,11 +106,12 @@ class Shop extends React.Component {
 	
 	//点击滚动到相对应的食物分类
 	scrollToAnchor(anchorName){
+		var height = this.refs.shopmen_nav.offsetHeight
 		$('.shopmen_nav').find('li').eq(anchorName-1).addClass('active').siblings().removeClass('active')
     if (anchorName) {
         let anchorElement = document.getElementById(anchorName);
         	$(".bigbox").animate({
-                scrollTop: anchorElement.offsetTop-160
+                scrollTop: anchorElement.offsetTop-height-10
             }, 400);
         if(anchorElement) { anchorElement.scrollIntoView()}
     }
@@ -143,8 +144,9 @@ class Shop extends React.Component {
   render() {
   		var shop=this.state.shopDT
   		var shopDT = this.state.shopDTimg;
+  			
     return (
-    	
+    
     	<div className="bigbox" id = 'bigbox'>
     		<Cart toBuy={this.toBuy}  cartlist = {store.getState().todoCart} qisong = {shop.float_minimum_order_amount} songfei = {this.state.songfei} />
 				<Header />

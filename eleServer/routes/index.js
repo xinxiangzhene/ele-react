@@ -8,7 +8,7 @@ const db_str="mongodb://localhost:27017/elelogon";
 var url = require('url');
 
 //短信
-var SendCode=require("../sendCode.js");
+//var SendCode=require("../sendCode.js");
 
 //手机短信四位随机数
 function getNum(){
@@ -17,24 +17,27 @@ function getNum(){
 var sendCd = '';
 
 //点击获取短信验证码
-router.get('/yanzheng',(req,res)=>{
-		//获取手机号
-		var obj = url.parse(req.url,true).query;
-		//四位随机数字
-		sendCd = getNum();
-		//手机号
-		var mobile =obj.user;
-		//调用短信
-//		SendCode.aliyun(mobile,'张向东','SMS_123665421',sendCd,(data)=>{
-//			console.log('发送短信成功')
-//		})
-})
+//router.get('/yanzheng',(req,res)=>{
+//		//获取手机号
+//		var obj = url.parse(req.url,true).query;
+//		//四位随机数字
+//		sendCd = getNum();
+//		//手机号
+//		var mobile =obj.user;
+//		//调用短信
+////		SendCode.aliyun(mobile,'张向东','SMS_123665421',sendCd,(data)=>{
+////			console.log('发送短信成功')
+////		})
+//})
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-
+router.get('/test', function(req, res, next) {
+  console.log(req.query)
+  res.send('1')
+});
 router.get("/newlogon",(req,res)=>{
 	var obj = url.parse(req.url,true).query;
 	var code=obj.code;
