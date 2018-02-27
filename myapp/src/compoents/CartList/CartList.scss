@@ -1,0 +1,137 @@
+@import "../../lib/reset.scss";
+#dingdan{
+    @include rect(100%,100%);
+    margin:0 auto;
+    overflow:auto;
+    background:#f7f7f7;
+     
+    aside{
+         @include rect(30%,auto);
+         float:left;
+          background:#fff;
+          margin:20px 10px 0 40px;
+          border:1px solid #e0e0e0;
+          .aside_header{
+              @include rect(100%,0.6rem);
+              padding:0.2rem;
+               border-bottom:1px solid #e0e0e0;
+              h1,p{
+                  display:inline-block;
+              }
+              h1{
+                  font-size:18px;
+                  font-weight:900;
+              }
+                p{
+                    float:right;
+                    font-size:12px;
+                    color:#999;
+                }
+          }
+          ul{
+               @include rect(100%,100%);
+               padding:0 0.2rem;
+              li{
+                   @include rect(100%,0.5rem);
+                   border-bottom:1px solid #e0e0e0;
+                  background:#fcfaf8;
+                   span{
+                       line-height:0.5rem;
+                       display:inline-block;
+                       text-align:center;
+                      
+                       &:nth-of-type(1){
+                            @include rect(40%,0.5rem);                                                   
+                       }&:nth-of-type(2){
+                            @include rect(30%,0.5rem);                                             
+                       }&:nth-of-type(3){
+                            @include rect(30%,0.5rem);                                                   
+                       }
+                   }
+                   &:nth-of-type(1){
+                             color:#999;  
+                             font-size:16px;                                             
+                       }
+              }
+          }
+          .aside_footer{
+              @include rect(100%,auto);
+              p{
+                  display:inline-block;
+                  @include rect(100%,0.3rem);
+                  padding:0 0.4rem;
+                  line-height:0.3rem;
+                  span{
+                      float:right;
+                      time{
+                          color:#f74342;
+                          font-size:30px;
+                      }
+                  }
+              }
+          }
+          .bg{
+              @include rect(100%,0.3rem);
+             img{
+                 @include rect(100%,0.3rem); 
+             }
+          }
+    }
+    section{
+         @include rect(63%,100%);
+          float:left;
+          background:#fff;
+          margin:20px 0px 0px 10px;
+          padding:0.3rem;
+          .address_top{
+              @include rect(100%,50px);
+              h1{
+                  display:inline-block;
+              }
+              span{
+                  color:#0089dc;
+                  text-decoration:underline;
+                  float:right;
+                  font-size:14px;
+              }
+          }
+          .address_center{
+              @include rect(100%,auto);
+          }
+          .dialog{
+              ul{
+                  input::-webkit-input-placeholder{
+            color:#999;
+            font-size:12px
+        }
+                  @include rect(100%,100%);
+                  li{
+                      @include rect(100%,0.4rem);
+                      line-height:0.4rem;
+                      margin:20px 0;
+                      time{
+                          display:inline-block;
+                          @include rect(1rem,0.4rem);
+                          text-align:center;
+                      }
+                      input{
+                          @include rect(3rem,0.4rem);
+                          text-indent:10px;
+                           border:1px solid #e0e0e0;
+                          border-radius: 2px;
+                          &:focus{
+                              border:1px solid #5cb6e6;
+                          }
+                      }
+                      &:nth-of-type(2){
+                          input{
+                          @include rect(0.1rem,0.1rem);
+                         
+                      }
+                      }
+                  }
+              }
+          }
+    }
+    }
+    

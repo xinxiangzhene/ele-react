@@ -30,6 +30,12 @@ class Shop extends React.Component {
 			data:{id:id},
 			success:(data1)=>{
 				console.log(data1)
+				var obj = {
+					id:id,
+					latitude:data1.latitude,
+					longitude:data1.longitude
+				}
+				localStorage.setItem('info',JSON.stringify(obj))
 				this.setState({
 					songfei:data1.piecewise_agent_fee.description,
 					shopDT:data1,
@@ -128,7 +134,6 @@ class Shop extends React.Component {
 	
 	//传递去结算路由跳转方法给子组件Cart
 	toBuy(){
-		
 		if(sessionStorage.getItem('user')){
 			this.props.history.push('/CartList')
 		}else{
@@ -143,7 +148,6 @@ class Shop extends React.Component {
     	<div className="bigbox" id = 'bigbox'>
     		<Cart toBuy={this.toBuy}  cartlist = {store.getState().todoCart} qisong = {shop.float_minimum_order_amount} songfei = {this.state.songfei} />
 				<Header />
-				
 	    		<div className="shopdetail">
 						<div className="DT_header">
 							<div className="contentDT">

@@ -339,4 +339,31 @@ var str = "";
  })
  reqData.end();
 });
+
+//获取满减数据
+router.get('/CartList', function(req, res, next) {
+	var obj = url.parse(req.url,true).query;
+	 var options = {
+    hostname: "www.ele.me",
+    port: 443,
+    path: '/restapi/shopping/restaurant/'+obj.id+'?extras%5B%5D=activities&extras%5B%5D=license&extras%5B%5D=identification&extras%5B%5D=albums&extras%5B%5D=flavors&latitude='+obj.latitude+'&longitude='+obj.longitude+'',
+    methods:"GET"
+	};
+var str = "";
+ const reqData = https.request(options, (myData) =>{
+    myData.on("data", (data) => {
+      str += data;
+    })
+    myData.on("error", () =>{
+      console.log("1")
+    })
+    myData.on("end", () => {
+      res.send(str)
+    })
+  })
+ reqData.on("error", () => {
+   console.log("22")
+ })
+ reqData.end();
+});
 module.exports = router;
