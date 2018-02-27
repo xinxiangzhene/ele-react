@@ -14,8 +14,8 @@ export default class CartList extends React.Component{
     	jian:0,
     	prices:0,
     	fee:0,
-    	 dialogVisible: false,
-    	 address:[]
+    	dialogVisible: false,
+    	address:[]
     }
     
 }
