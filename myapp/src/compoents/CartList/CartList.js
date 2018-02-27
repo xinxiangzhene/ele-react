@@ -1,5 +1,5 @@
 import React from 'react'
-import store from './../../redux/store.js'
+import store from './../../redux/store.js';
 import Header from './../Header/Header.js'
 import './CartList.scss'
 import {Dialog,Button,Message} from 'element-react'

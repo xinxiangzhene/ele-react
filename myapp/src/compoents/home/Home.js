@@ -30,12 +30,11 @@ class Home extends React.Component {
 			}
 		},300)
 		var that=this
-//		var msg=sessionStorage.getItem('user',that.user)
-//		var str= msg.substr(0,3)+"****"+msg.substr(7);
-//		this.setState({
-//			user:str
-//		})
-		
+		var msg=sessionStorage.getItem('user',that.user)
+		var str= msg.substr(0,3)+"****"+msg.substr(7);
+		this.setState({
+			user:str
+		})
 		
 		this.refs.city.style.display = 'none'
 		this.refs.box.style.display = 'none'

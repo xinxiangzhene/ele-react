@@ -95,7 +95,7 @@ class Login extends React.Component{
 			$.ajax({
 				type:"get",
 				url:"http://localhost:3000/denglu",
-				data:{user:this.refs.tel2.value,code:this.refs.password2.value},
+				data:{user:this.refs.tel2.value,pass:this.refs.password2.value},
 				success:function(data){
 					console.log(data)
 					sessionStorage.setItem('user',that.refs.tel2.value);
@@ -109,9 +109,6 @@ class Login extends React.Component{
 		}else{
 			alert("请填写合法的手机号")
 		}
-		
-		
-		
 	}
 	duanxin(){
 		this.refs.logininput.style.display = 'block';
