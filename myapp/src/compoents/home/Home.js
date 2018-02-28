@@ -17,24 +17,23 @@ class Home extends React.Component {
 			user:''
 		}
 	}
-
 	componentDidMount() {
-		
-		setTimeout(function(){
+		setTimeout(()=>{
 			if(sessionStorage.getItem('user')){
 				$('.home_header_right_span').hide()
 				$('.home_header_right_spanfirst').show()
+				var msg=sessionStorage.getItem('user',that.user)
+				var str= msg.substr(0,3)+"****"+msg.substr(7);
+				this.setState({
+					user:str
+				})
 			}else{
 				$('.home_header_right_span').show()
 				$('.home_header_right_spanfirst').hide()
 			}
 		},300)
 		var that=this
-		var msg=sessionStorage.getItem('user',that.user)
-		var str= msg.substr(0,3)+"****"+msg.substr(7);
-		this.setState({
-			user:str
-		})
+		
 		
 		this.refs.city.style.display = 'none'
 		this.refs.box.style.display = 'none'
@@ -56,7 +55,6 @@ class Home extends React.Component {
 		})
 	
 $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9BrlEyfdq0&coor=bd09ll&callback=?", (data)=>{
-                console.log(data);
                 var obj = {
 						latitude:data.content.point.x,
 						longitude:data.content.point.y,
@@ -187,7 +185,7 @@ $.getJSON("http://api.map.baidu.com/location/ip?ip=&ak=WLPiPfqpz3ZHYduIe2ojrU9Br
       		{
       			this.state.address.map((item, index) => {
       					return(
-      						 <li key={index}>
+      						 <li onClick={()=>{sessionStorage.setItem('city',item.city)}} key={index}>
       						 <NavLink to = {'/shopList/'+item.geohash+'/'+item.latitude+'/'+item.longitude}>
       						 <p>{item.name}</p>
       						 <span>{item.address}</span>

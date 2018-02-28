@@ -31,8 +31,7 @@
                 padding-top: 0.07rem;
                 overflow: hidden;
                 #name{
-                
-                    @include rect(150px,100%);
+                        @include rect(150px,100%);
                         display: block;
                         -webkit-box-orient: vertical;
                         -webkit-line-clamp: 1;

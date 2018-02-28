@@ -48,7 +48,6 @@ componentDidMount(){
 
 //购物车加
 add(i){
-	console.log(i)
 	var arr = store.getState().todoCart;
 	arr[i].price = arr[i].price+arr[i].price/arr[i].num;
 	arr[i].num++;
@@ -89,7 +88,6 @@ clear(){
 }
 //点击结算按钮
 zhifu(){
-	console.log(this.refs.parice.innerHTML,this.props.qisong)
 	if(this.refs.parice.innerHTML>=this.props.qisong){
 		var arr = store.getState().todoCart
 		localStorage.setItem('proList',JSON.stringify(arr))
@@ -125,7 +123,6 @@ zhifu(){
      	this.refs.footer_right.style.color = '#000';
      	this.refs.footer_right.innerHTML = `还差${this.props.qisong-parices}起送`
      	this.refs.footer_right.style.background = '#e4e4e4';
-     
      }}
     var length = this.props.cartlist.length;
   	return(

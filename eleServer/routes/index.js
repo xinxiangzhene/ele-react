@@ -34,16 +34,12 @@ var sendCd = '';
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-router.get('/test', function(req, res, next) {
-  console.log(req.query)
-  res.send('1')
-});
 router.get("/newlogon",(req,res)=>{
 	var obj = url.parse(req.url,true).query;
 	var code=obj.code;
 	if(code==sendCd){
 	mongodb.connect(db_str,(err,sjk)=>{
-		sjk.collection("logon",(err,coll)=>{
+		sjk.collection("user",(err,coll)=>{
 			coll.find({user:obj.user}).toArray((err,result)=>{
 				
 				if(result.length>0){
@@ -67,7 +63,7 @@ router.get("/denglu",(req,res)=>{
 	var str= url.parse(req.url,true).query;
 	console.log(str)
 	mongodb.connect(db_str,(err,sjk)=>{
-		sjk.collection("logon",(err,coll)=>{
+		sjk.collection("user",(err,coll)=>{
 			coll.find({user:str.user,code:str.pass}).toArray((err,result)=>{
 				
 				if(result.length>0){

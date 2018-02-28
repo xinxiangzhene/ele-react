@@ -2,6 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import { baseUrl } from "./../../common/base.js"
 import "./ShopDetail.scss"
+import {MessageBox} from 'element-react'
 import store from './../../redux/store.js'
 import Header from "../Header/Header.js"
 import Footer from "../Footer/Footer.js"
@@ -14,13 +15,11 @@ class Shop extends React.Component {
     	detail:[],
     	shopDT:'',
     	shopDTimg:'',
-    	songfei:''
+    	songfei:0
     }
    this.toBuy=this.toBuy.bind(this)
   }
 	componentDidMount(){
-		 
-  	console.log(this)
 		var id = this.props.match.params.id;
 		var that = this;
 			//店铺详情信息
@@ -29,7 +28,10 @@ class Shop extends React.Component {
 			dataType:'json',
 			data:{id:id},
 			success:(data1)=>{
-				console.log(data1)
+				if(data1.message==="餐厅不存在"){
+					that.refs.shopdetail.style.display='none'
+					 MessageBox.alert('该餐厅不存在。。', '服务器好像饿晕了！');
+				}else{
 				var obj = {
 					id:id,
 					latitude:data1.latitude,
@@ -41,20 +43,18 @@ class Shop extends React.Component {
 					shopDT:data1,
 					shopDTimg:data1.image_path
 				})
-			}
+			}}
 		})
 			$.ajax({
 			url:baseUrl+'shopDetail',
 			dataType:'json',
 			data:{id:id},
 			success:(data)=>{
-				console.log(data)
 				this.setState({
 					detail:data
 				})
 			}
 		})
-			
 	//滚动把商品分类列表定位在最上面
 		$(".bigbox").on("scroll", function() {
 			var $scrollTop = $(".bigbox").scrollTop();
@@ -111,7 +111,7 @@ class Shop extends React.Component {
     if (anchorName) {
         let anchorElement = document.getElementById(anchorName);
         	$(".bigbox").animate({
-                scrollTop: anchorElement.offsetTop-height-10
+                scrollTop:anchorElement.offsetTop-height-10
             }, 400);
         if(anchorElement) { anchorElement.scrollIntoView()}
     }
@@ -147,10 +147,10 @@ class Shop extends React.Component {
   			
     return (
     
-    	<div className="bigbox" id = 'bigbox'>
+    	<div className="bigbox" id = 'bigbox' ref='shopdetail'>
     		<Cart toBuy={this.toBuy}  cartlist = {store.getState().todoCart} qisong = {shop.float_minimum_order_amount} songfei = {this.state.songfei} />
 				<Header />
-	    		<div className="shopdetail">
+	    		<div className="shopdetail" >
 						<div className="DT_header">
 							<div className="contentDT">
 									<div className="shopguide-info">

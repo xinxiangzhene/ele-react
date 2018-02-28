@@ -97,10 +97,14 @@
           }
           .address_center{
               @include rect(100%,auto);
+              li{
+                  @include rect(100%,90px);
+                   
+              }
           }
           .dialog{
               ul{
-                  input::-webkit-input-placeholder{
+            input::-webkit-input-placeholder{
             color:#999;
             font-size:12px
         }
@@ -130,6 +134,34 @@
                       }
                       }
                   }
+                .address_list{
+                    position:absolute;
+                    background:#fff;
+                    z-index:999;
+                    @include rect(3rem,1.2rem);
+                    overflow:auto;
+                    left:1.2rem;
+                    border:1px solid #e0e0e0;
+                    margin-top:-20px;
+                    li{
+                        
+                         @include rect(3rem,0.5rem);
+                        border-bottom:1px solid #e0e0e0;
+                        text-align: center;
+                        line-height:0.25rem;
+                        margin:0;
+                        p{
+                        -webkit-line-clamp: 1;
+                        white-space: nowrap;
+                        text-overflow:ellipsis;
+                        overflow: hidden;
+                        &:nth-of-type(2){
+                            font-size:12px;
+                            color:#999;
+                        }
+                        }
+                    }
+                }
               }
           }
     }
