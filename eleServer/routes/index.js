@@ -40,7 +40,7 @@ router.get("/newlogon",(req,res)=>{
 	var code=obj.code;
 	if(code==sendCd){
 	mongodb.connect(db_str,(err,sjk)=>{
-		sjk.collection("logon",(err,coll)=>{
+		sjk.collection("user",(err,coll)=>{
 			coll.find({user:obj.user}).toArray((err,result)=>{
 				
 				if(result.length>0){
@@ -62,17 +62,29 @@ router.get("/newlogon",(req,res)=>{
 //密码登录
 router.get("/denglu",(req,res)=>{
 	var str= url.parse(req.url,true).query;
-	console.log(str)
+	console.log(str.pass)
+	var pass=str.pass
 	mongodb.connect(db_str,(err,sjk)=>{
-		sjk.collection("logon",(err,coll)=>{
-			coll.find({user:str.user,code:str.pass}).toArray((err,result)=>{
+		sjk.collection("user",(err,coll)=>{
+			coll.find({user:str.user}).toArray((err,result)=>{
 				
 				if(result.length>0){
-					res.send('0')
-				}else{
-					coll.insertOne(str,(err,result)=>{
+					
+					coll.find({pass:pass}).toArray((err,data)=>{
+						if(data.length>0){
+							res.send('0')
+						}else{
 							res.send('1')
+						}
 					})
+					
+				}else{
+					res.send('2')
+					console.log("222222222222222")
+//					coll.insertOne(str,(err,result)=>{
+//							res.send('1')
+//
+//					})
 				}
 				sjk.close()
 			})

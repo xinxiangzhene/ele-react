@@ -19,22 +19,23 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		
+		var that=this
 		setTimeout(function(){
 			if(sessionStorage.getItem('user')){
 				$('.home_header_right_span').hide()
 				$('.home_header_right_spanfirst').show()
+				var msg=sessionStorage.getItem('user',that.user)
+					var str= msg.substr(0,3)+"****"+msg.substr(7);
+					that.setState({
+						user:str
+					})
 			}else{
 				$('.home_header_right_span').show()
 				$('.home_header_right_spanfirst').hide()
 			}
 		},300)
-		var that=this
-		var msg=sessionStorage.getItem('user',that.user)
-		var str= msg.substr(0,3)+"****"+msg.substr(7);
-		this.setState({
-			user:str
-		})
+		
+		
 		
 		this.refs.city.style.display = 'none'
 		this.refs.box.style.display = 'none'

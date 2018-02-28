@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-
+import $ from "jquery"
 import "./Header.scss"
 
 
@@ -8,10 +8,28 @@ class Home extends React.Component{
 	constructor(props){
 		super(props)
 		this.state={
-			
+			user:''
 		}
 		
 	}
+	componentDidMount(){
+		var that=this
+		setTimeout(function(){
+			if(sessionStorage.getItem('user')){
+				$('.home_header_right_span').hide()
+				$('.home_header_right_spanfirst').show()
+				var msg=sessionStorage.getItem('user',that.user)
+					var str= msg.substr(0,3)+"****"+msg.substr(7);
+					that.setState({
+						user:str
+					})
+			}else{
+				$('.home_header_right_span').show()
+				$('.home_header_right_spanfirst').hide()
+			}
+		},300)
+	}
+	
 	render(){
 		return(
 			<div className='shop_box'>
@@ -36,11 +54,17 @@ class Home extends React.Component{
 									<img src="https://shadow.elemecdn.com/faas/desktop/media/img/appqc.95e532.png" alt=''/>
 								</div>
 							</div>
+							
 							<div className="shop_head_float3">
-								<span className="iconfont icon-wode"></span>
-								<span><NavLink to = '/login' style = {{color:'#fff'}}>登录/注册</NavLink></span>
-								<span></span>
+								
+								<span className='home_header_right_spanfirst'>{this.state.user}</span>
+								<span ref="home_header_right_span" className='home_header_right_span'>
+									<span className="iconfont icon-wode"></span>
+									<span><NavLink to = '/login' style = {{color:'#fff'}}>登录/注册</NavLink></span>
+								</span>
+								
 							</div>
+							
 						</div>
 						
 					</div>

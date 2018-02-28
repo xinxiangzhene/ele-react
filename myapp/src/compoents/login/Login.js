@@ -2,7 +2,8 @@ import React from 'react'
 import './Login.scss'
 import $ from 'jquery'
 
-
+import {Switch} from 'element-react';
+import { Alert  } from 'element-react';
 
 class Login extends React.Component{
 	constructor(props){
@@ -11,7 +12,9 @@ class Login extends React.Component{
         	current: 0,
         	mag:"获取验证码",
         	codeState:false,
-        	yanzhengma:''
+        	yanzhengma:'',
+        	pass:'password',
+        	value1:false
         };
 	};
 	
@@ -101,14 +104,35 @@ class Login extends React.Component{
 					sessionStorage.setItem('user',that.refs.tel2.value);
 					if(data==0){
 						that.props.history.push('./home')
+					}else if(data==2){
+						alert("手机号还没注册请注册")
 					}else if(data==1){
-						that.props.history.push('./home')
+						alert("手机号或密码错误")
 					}
 				}
 			});
 		}else{
-			alert("请填写合S法的手机号")
+			alert("请填写合法的手机号")
 		}
+	}
+	//密码登录时密码点击显示或隐藏
+	passpan(){
+		if(this.state.value1==false){
+			$(".login_input22_switch").removeClass("icon-yincang");
+			$(".login_input22_switch").addClass("icon-xianshi");
+			this.setState({
+				pass:"text",
+				value1:true
+			})
+		}else{
+			$(".login_input22_switch").removeClass("icon-xianshi");
+			$(".login_input22_switch").addClass("icon-yincang");
+			this.setState({
+				pass:"password",
+				value1:false
+			})
+		}
+		
 	}
 	duanxin(){
 		this.refs.logininput.style.display = 'block';
@@ -126,6 +150,7 @@ class Login extends React.Component{
 		this.refs.loginhead_span2.style.color='#2395ff';
 		this.refs.loginhead_span1.style.color='#333';
 	}
+	
 	render(){
 		return(
 			<div className="loginbox">
@@ -158,7 +183,8 @@ class Login extends React.Component{
 							<input ref = 'tel2' className="login_input21" type="tel" placeholder="手机号/邮箱" />
 						</div>
 						<div className="logininput22">
-							<input ref = 'password2' className="login_input22" type="tel" placeholder="密码" />
+							<input ref = 'password2' className="login_input22" type={this.state.pass} placeholder="密码" />
+							<span onClick = {this.passpan.bind(this)} className="login_input22_switch iconfont icon-yincang"></span>
 						</div>
 						<button onClick = {this.login2.bind(this)} ref='loginbtn2' className="loginbtn2">登录</button>
 					</div>

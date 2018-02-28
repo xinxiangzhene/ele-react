@@ -121,8 +121,9 @@
                 }
             }
            .logininput22{
-               width:3rem;
-               margin-top:0.16rem;
+                position: relative;
+                width:3rem;
+                margin-top:0.16rem;
                 height:0.48rem;
                 font-size:0.14rem;
                 background: #fff;
@@ -139,6 +140,12 @@
                     border-radius:0.04rem;
                     color: #333;
                     border: 1px solid #ddd;
+                }
+                .login_input22_switch{
+                    position: absolute;
+                    top:13px;
+                    right:20px;
+                    
                 }
            }
            .loginbtn2{
