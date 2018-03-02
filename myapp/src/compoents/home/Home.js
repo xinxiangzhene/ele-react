@@ -18,39 +18,30 @@ class Home extends React.Component {
 		}
 	}
 	componentDidMount() {
-<<<<<<< HEAD
 		var that=this
 		setTimeout(function(){
-=======
 		setTimeout(()=>{
->>>>>>> 79ff0442b1653b7882e5c583c65195ff5f6814bd
 			if(sessionStorage.getItem('user')){
 				$('.home_header_right_span').hide()
 				$('.home_header_right_spanfirst').show()
 				var msg=sessionStorage.getItem('user',that.user)
-<<<<<<< HEAD
 					var str= msg.substr(0,3)+"****"+msg.substr(7);
 					that.setState({
 						user:str
 					})
-=======
 				var str= msg.substr(0,3)+"****"+msg.substr(7);
 				this.setState({
 					user:str
 				})
->>>>>>> 79ff0442b1653b7882e5c583c65195ff5f6814bd
+
 			}else{
 				$('.home_header_right_span').show()
 				$('.home_header_right_spanfirst').hide()
 			}
 		},300)
-<<<<<<< HEAD
-		
-=======
+
 		var that=this
->>>>>>> 79ff0442b1653b7882e5c583c65195ff5f6814bd
-		
-		
+
 		this.refs.city.style.display = 'none'
 		this.refs.box.style.display = 'none'
 		var arr = []
