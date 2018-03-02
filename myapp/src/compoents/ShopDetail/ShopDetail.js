@@ -56,8 +56,20 @@ class Shop extends React.Component {
 			}
 		})
 	//滚动把商品分类列表定位在最上面
+		var list,indexs=0;
+		setTimeout(()=>{
+			list = Array.from($('.shopmen_content').find('.shopmin_lis1').find('h3'))
+			$('.shopmen_nav').find('li').eq(0).addClass('active')
+		},1000)
+		var height = this.refs.shopmen_nav.offsetHeight
 		$(".bigbox").on("scroll", function() {
 			var $scrollTop = $(".bigbox").scrollTop();
+					list.map((item,index)=>{
+					if($scrollTop>item.offsetTop-height-90){
+						indexs = index;
+					}
+				})
+				$('.shopmen_nav').find('li').eq(indexs).addClass('active').siblings().removeClass('active')
 				if($scrollTop>200){
 				that.refs.shopmen_nav.style.position = 'fixed' 
 				that.refs.shopmen_nav.style.top = '0' 
@@ -67,7 +79,6 @@ class Shop extends React.Component {
 				}
 		})
 		setTimeout(()=>{
-			$('.shopmen_nav').find('li').eq(0).addClass('active')
 		},1000)
 	}
 	
