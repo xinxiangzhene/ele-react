@@ -230,7 +230,6 @@ document.title = '记得回来点单哦！--饿了么';
 		})
 	}
 	render() {
-		console.log(this.state.shopList)
 		return(
 			<div className = 'content'>
 		<RightBox />

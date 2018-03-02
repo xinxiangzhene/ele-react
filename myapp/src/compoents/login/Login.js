@@ -113,6 +113,7 @@ class Login extends React.Component{
 			});
 		}else{
 			alert("请填写合法的手机号")
+<<<<<<< HEAD
 		}
 	}
 	//密码登录时密码点击显示或隐藏
@@ -131,6 +132,8 @@ class Login extends React.Component{
 				pass:"password",
 				value1:false
 			})
+=======
+>>>>>>> 79ff0442b1653b7882e5c583c65195ff5f6814bd
 		}
 		
 	}

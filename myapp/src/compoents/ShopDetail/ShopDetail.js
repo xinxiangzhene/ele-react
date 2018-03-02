@@ -2,6 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import { baseUrl } from "./../../common/base.js"
 import "./ShopDetail.scss"
+import {MessageBox} from 'element-react'
 import store from './../../redux/store.js'
 import Header from "../Header/Header.js"
 import Footer from "../Footer/Footer.js"
@@ -14,13 +15,11 @@ class Shop extends React.Component {
     	detail:[],
     	shopDT:'',
     	shopDTimg:'',
-    	songfei:''
+    	songfei:0
     }
    this.toBuy=this.toBuy.bind(this)
   }
 	componentDidMount(){
-		 
-  	console.log(this)
 		var id = this.props.match.params.id;
 		var that = this;
 			//店铺详情信息
@@ -29,7 +28,10 @@ class Shop extends React.Component {
 			dataType:'json',
 			data:{id:id},
 			success:(data1)=>{
-				console.log(data1)
+				if(data1.message==="餐厅不存在"){
+					that.refs.shopdetail.style.display='none'
+					 MessageBox.alert('该餐厅不存在。。', '服务器好像饿晕了！');
+				}else{
 				var obj = {
 					id:id,
 					latitude:data1.latitude,
@@ -41,23 +43,33 @@ class Shop extends React.Component {
 					shopDT:data1,
 					shopDTimg:data1.image_path
 				})
-			}
+			}}
 		})
 			$.ajax({
 			url:baseUrl+'shopDetail',
 			dataType:'json',
 			data:{id:id},
 			success:(data)=>{
-				console.log(data)
 				this.setState({
 					detail:data
 				})
 			}
 		})
-			
 	//滚动把商品分类列表定位在最上面
+		var list,indexs=0;
+		setTimeout(()=>{
+			list = Array.from($('.shopmen_content').find('.shopmin_lis1').find('h3'))
+			$('.shopmen_nav').find('li').eq(0).addClass('active')
+		},1000)
+		var height = this.refs.shopmen_nav.offsetHeight
 		$(".bigbox").on("scroll", function() {
 			var $scrollTop = $(".bigbox").scrollTop();
+					list.map((item,index)=>{
+					if($scrollTop>item.offsetTop-height-90){
+						indexs = index;
+					}
+				})
+				$('.shopmen_nav').find('li').eq(indexs).addClass('active').siblings().removeClass('active')
 				if($scrollTop>200){
 				that.refs.shopmen_nav.style.position = 'fixed' 
 				that.refs.shopmen_nav.style.top = '0' 
@@ -67,7 +79,6 @@ class Shop extends React.Component {
 				}
 		})
 		setTimeout(()=>{
-			$('.shopmen_nav').find('li').eq(0).addClass('active')
 		},1000)
 	}
 	
@@ -106,11 +117,12 @@ class Shop extends React.Component {
 	
 	//点击滚动到相对应的食物分类
 	scrollToAnchor(anchorName){
+		var height = this.refs.shopmen_nav.offsetHeight
 		$('.shopmen_nav').find('li').eq(anchorName-1).addClass('active').siblings().removeClass('active')
     if (anchorName) {
         let anchorElement = document.getElementById(anchorName);
         	$(".bigbox").animate({
-                scrollTop: anchorElement.offsetTop-160
+                scrollTop:anchorElement.offsetTop-height-10
             }, 400);
         if(anchorElement) { anchorElement.scrollIntoView()}
     }
@@ -143,12 +155,13 @@ class Shop extends React.Component {
   render() {
   		var shop=this.state.shopDT
   		var shopDT = this.state.shopDTimg;
+  			
     return (
-    	
-    	<div className="bigbox" id = 'bigbox'>
+    
+    	<div className="bigbox" id = 'bigbox' ref='shopdetail'>
     		<Cart toBuy={this.toBuy}  cartlist = {store.getState().todoCart} qisong = {shop.float_minimum_order_amount} songfei = {this.state.songfei} />
 				<Header />
-	    		<div className="shopdetail">
+	    		<div className="shopdetail" >
 						<div className="DT_header">
 							<div className="contentDT">
 									<div className="shopguide-info">

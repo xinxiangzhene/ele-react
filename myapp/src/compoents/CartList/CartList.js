@@ -2,6 +2,7 @@ import React from 'react'
 import store from './../../redux/store.js';
 import Header from './../Header/Header.js'
 import './CartList.scss'
+//import Erweima from './Erweima.js'
 import {Dialog,Button,Message} from 'element-react'
 import { baseUrl } from "./../../common/base.js"
 import $ from 'jquery'
@@ -14,27 +15,30 @@ export default class CartList extends React.Component{
     	jian:0,
     	prices:0,
     	fee:0,
-    	 dialogVisible: false,
-    	 address:[]
+    	dialogVisible: false,
+    	address:[],
+    	changeAdr:'',
+    	address_List:[],
+    	detail:''
     }
-    
 }
 	componentDidMount(){
 		var obj = JSON.parse(localStorage.getItem('info'));
 		var objs = JSON.parse(localStorage.getItem('proList'))
 		this.setState({
 				proList:JSON.parse(localStorage.getItem('proList'))
-			})
+		})
 		var arr=[];
 		var cityList=[]
 		var prices=0;
 		var manjian;
+		this.refs.addresss.style.display='none'
 				$.ajax({
 			url:baseUrl+'CartList',
 			dataType:'json',
 			data:{id:obj.id,latitude:obj.latitude,longitude:obj.longitude},
 			success:(data)=>{
-				console.log(data)
+				if(JSON.parse(data.activities[1].attribute)){
 				manjian = JSON.parse(data.activities[1].attribute)
 				objs.map((item,index)=>{
 					prices+=item.price;
@@ -49,13 +53,7 @@ export default class CartList extends React.Component{
 			    		jian=i;
 			    	}
 			    })
-			    this.setState({
-				prices:prices,
-				fee:data.float_delivery_fee
-			})
-
-				console.log()
-				if(jian===undefined){
+			    if(jian===undefined){
 					this.refs.manjian.style.display='none';
 				}else{
 					this.setState({
@@ -63,20 +61,40 @@ export default class CartList extends React.Component{
 					man:arr[jian]
 				    })
 				}
+			}else{
+				this.refs.manjian.style.display='none';
+			}
+			    this.setState({
+				prices:prices,
+				fee:data.float_delivery_fee,
+				detail:data
+			})
+
+				
 			}
 		})
 			
-//		setTimeout(()=>{
-//			$.ajax({
-//					url: "http://localhost:3000/ele/proList",
-//					type:'post',
-//					data:{list:arrs},
-//					 cache: false,
-//					success:function(data){
-//						console.log(data)
-//					}
-//				})
-//		},300)
+	//获取收货地址列表：
+		$.ajax({
+			url:baseUrl+'users/AddList',
+			dataType:'json',
+			data:{user:sessionStorage.getItem('user')},
+			success:(data)=>{
+				if(data[0].Add_List){
+					
+					this.setState({
+						address_List:JSON.parse(data[0].Add_List)
+					})
+					this.state.address_List.map((item,index)=>{
+						if(item.address.city!=sessionStorage.getItem('city')){
+							$('.dizhi_list').eq(index).css({background:'#7c7c7c'})
+						}
+					})
+				}else{
+					console.log('暂无地址')
+				}
+				}
+			})
 	}
 back(){
 	window.history.go(-1)
@@ -86,15 +104,39 @@ quxiao(){
 		dialogVisible: false
 	})
 }
+//确认添加地址
 queding(){
 	var obj = {
 		name:this.refs.name.value,
 		addr:this.refs.addr.value,
 		sex:$('input:radio:checked').val(),
-		address:this.refs.address.value,
-		tel:this.refs.tel.value
+		address:this.state.changeAdr,
+		tel:this.refs.tel.value,
+		user:sessionStorage.getItem('user')
 	}
-	console.log(obj)
+	var arr = []
+		$.ajax({
+			url:baseUrl+'users/AddList',
+			dataType:'json',
+			data:{user:sessionStorage.getItem('user')},
+			success:(data)=>{
+				if(data[0].Add_List){
+						arr = JSON.parse(data[0].Add_List)
+						arr.push(obj)
+				}else{
+					arr.push(obj)
+				}
+				data[0].Add_List = JSON.stringify(arr)
+			$.ajax({
+				type:'post',
+			url:baseUrl+'users/addAddress',
+			data:data[0],
+			success:(data1)=>{
+				console.log('1')
+			}
+			})
+			}
+	})
 	Message({
       type: 'success',
       message: '添加新地址成功!'
@@ -103,9 +145,13 @@ queding(){
 		dialogVisible: false
 	}) 
 }
+//搜索详细地址
 address(){
-	console.log(this.refs.address.value)
-	console.log(sessionStorage.getItem('geohash'))
+	if(this.refs.address.value.length===0){
+		this.refs.addresss.style.display='none'
+	}else{
+		this.refs.addresss.style.display='block'
+	}
 	$.ajax({
 			url: baseUrl + 'list',
 			dataType: 'json',
@@ -114,12 +160,19 @@ address(){
 				city: this.refs.address.value
 			},
 			success: (data) => {
-				console.log(data)
 				this.setState({
 					address: data
 				})
 			}
 		})
+}
+//选择收货详细地址
+changeAdr(data){
+	this.setState({
+		changeAdr:data
+	})
+	this.refs.address.value = data.name;
+	this.refs.addresss.style.display='none'
 }
 	render(){
 		return(
@@ -130,7 +183,7 @@ address(){
 						<h1>订单信息</h1>
 						<p onClick={this.back.bind(this)}><i style={{fontSize:'12px'}} className='iconfont icon-fanhui1'></i>返回商家修改</p>
 					</div>
-					<ul>
+					<ul className='pro_list'>
 						<li><span>商品</span><span>份数</span><span>小计(元)</span></li>
 						{
 							this.state.proList.map((item,index)=>{
@@ -156,7 +209,7 @@ address(){
 						<div className='address_top'>
 							<h1>收货地址</h1>
 							<span onClick={ () => this.setState({ dialogVisible: true }) }>添加新地址</span>
-     
+     						
      
      <Dialog className="dialog" size="tiny" visible={ this.state.dialogVisible }  onCancel={ () => this.setState({ dialogVisible: false }) } lockScroll={ false }>
         <Dialog.Body>
@@ -166,8 +219,20 @@ address(){
          	<input type='radio' ref='sex' name='sex' defaultValue='男' />男&nbsp;&nbsp;
          	<input type='radio' ref='sex' name='sex'  defaultValue='女' />女
          	</li>
-         	<li><time>位置</time><input ref='addr' placeholder='单元号、门牌号' /></li>
-         	<li><time>详细地址</time><input onKeyUp={this.address.bind(this)} ref='address' placeholder='请输入小区、大厦或学校' /></li>
+         	<li><time>位置</time><input onKeyUp={this.address.bind(this)} ref='address' placeholder='请输入小区、大厦或学校'/></li>
+         	<ul className='address_list' ref='addresss'>
+         		{
+         			this.state.address.map((item,index)=>{
+         				return(
+         					<li key={index} onClick={this.changeAdr.bind(this,item)}>
+         						<p>{item.name}</p>
+         						<p>{item.address}</p>
+         					</li>
+         				)
+         			})
+         		}
+         		</ul>
+         	<li><time>详细地址</time><input  ref='addr' placeholder='单元号、门牌号'  /></li>
          	<li><time>手机号</time><input ref='tel' placeholder='请输入您的手机号' /></li>
          </ul>
         </Dialog.Body>
@@ -178,7 +243,15 @@ address(){
       </Dialog>
 						</div>
 						<ul className='address_center'>
-							
+						
+     							{this.state.address_List.map((item,index)=>{
+     								return(
+     									<li className='dizhi_list' key={index}><strong>{item.name}</strong><strong>{item.tel}</strong>
+     									<p>{item.address.name}{item.address.address}&nbsp;&nbsp;{item.address.addr}</p>
+     									</li>
+     								)
+     							})}
+     						
 						</ul>
 					</div>
 				</section>
